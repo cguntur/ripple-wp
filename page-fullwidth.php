@@ -1,6 +1,8 @@
 <?php
 /**
- * The template for displaying all pages
+ * Template Name: Fullwidth Template
+ * 
+ * The template for displaying fullwidth pages
  *
  * This is the template that displays all pages by default.
  * Please note that this is the WordPress construct of pages
@@ -15,7 +17,7 @@
 get_header();
 ?>
 
-	<main id="primary" class="site-main">
+	<main id="primary" class="site-main fullwidth">
 
 		<?php
 		while ( have_posts() ) :

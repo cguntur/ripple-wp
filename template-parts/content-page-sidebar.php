@@ -1,22 +1,12 @@
 <?php
 /**
- * Template part for displaying page content in page.php
+ * Template part for displaying page content in page-with-sidebar.php
  *
  * @link https://developer.wordpress.org/themes/basics/template-hierarchy/
  *
  * @package ripple-wp
  */
 
-?>
-<?php
-$hide_page_title = get_post_meta( get_the_ID(), 'ripple_wp_hide_page_title', true );
-if(!is_front_page() && !$hide_page_title){
-    ?>
-    <header class="entry-header">
-        <?php the_title( '<h1 class="entry-title">', '</h1>' ); ?>
-    </header><!-- .entry-header -->
-    <?php
-}
 ?>
 
 <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>

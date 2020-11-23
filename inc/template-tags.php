@@ -27,7 +27,7 @@ if ( ! function_exists( 'ripple_wp_posted_on' ) ) :
 
 		$posted_on = sprintf(
 			/* translators: %s: post date. */
-			esc_html_x( 'Posted on %s', 'post date', 'ripple-wp' ),
+			esc_html_x( ' %s', 'post date', 'ripple-wp' ),
 			'<a href="' . esc_url( get_permalink() ) . '" rel="bookmark">' . $time_string . '</a>'
 		);
 
@@ -43,7 +43,7 @@ if ( ! function_exists( 'ripple_wp_posted_by' ) ) :
 	function ripple_wp_posted_by() {
 		$byline = sprintf(
 			/* translators: %s: post author. */
-			esc_html_x( 'by %s', 'post author', 'ripple-wp' ),
+			esc_html_x( '  %s', 'post author', 'ripple-wp' ),
 			'<span class="author vcard"><a class="url fn n" href="' . esc_url( get_author_posts_url( get_the_author_meta( 'ID' ) ) ) . '">' . esc_html( get_the_author() ) . '</a></span>'
 		);
 
@@ -59,19 +59,25 @@ if ( ! function_exists( 'ripple_wp_entry_footer' ) ) :
 	function ripple_wp_entry_footer() {
 		// Hide category and tag text for pages.
 		if ( 'post' === get_post_type() ) {
-			/* translators: used between list items, there is a space after the comma */
-			$categories_list = get_the_category_list( esc_html__( ', ', 'ripple-wp' ) );
-			if ( $categories_list ) {
-				/* translators: 1: list of categories. */
-				printf( '<span class="cat-links">' . esc_html__( 'Posted in %1$s', 'ripple-wp' ) . '</span>', $categories_list ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-			}
-
-			/* translators: used between list items, there is a space after the comma */
-			$tags_list = get_the_tag_list( '', esc_html_x( ', ', 'list item separator', 'ripple-wp' ) );
-			if ( $tags_list ) {
-				/* translators: 1: list of tags. */
-				printf( '<span class="tags-links">' . esc_html__( 'Tagged %1$s', 'ripple-wp' ) . '</span>', $tags_list ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-			}
+            /* translators: used between list items, there is a space after the comma */
+            if(get_theme_mod('blog_content_categories')){
+                $categories_list = get_the_category_list( esc_html__( ', ', 'ripple-wp' ) );
+                if ( $categories_list ) {
+                    /* translators: 1: list of categories. */
+                    //echo $categories_list;
+                    printf( '<span class="cat-links">' . esc_html__( ' %1$s', 'ripple-wp' ) . '</span>', $categories_list ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+                }
+            }
+			
+            if(get_theme_mod('blog_content_tags')){
+                /* translators: used between list items, there is a space after the comma */
+                $tags_list = get_the_tag_list( '', esc_html_x( ', ', 'list item separator', 'ripple-wp' ) );
+                if ( $tags_list ) {
+                    /* translators: 1: list of tags. */
+                    printf( '<span class="tags-links">' . esc_html__( 'Tagged %1$s', 'ripple-wp' ) . '</span>', $tags_list ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+                }
+            }
+			
 		}
 
 		if ( ! is_single() && ! post_password_required() && ( comments_open() || get_comments_number() ) ) {

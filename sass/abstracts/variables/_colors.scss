@@ -1,20 +1,37 @@
-$color__background-body: #fff;
-$color__background-screen: #f1f1f1;
-$color__background-hr: #ccc;
-$color__background-button: #e6e6e6;
-$color__background-pre: #eee;
-$color__background-ins: #fff9c0;
+//$color__background-body: #fff;
 
-$color__text-screen: #21759b;
-$color__text-input: #666;
+//$color__background-body: #e7f1f5;
+$color__background-body: #ffffff;
+$color__background-section: #424856;
+/*$color__background-section: #ffffff;*/
+$color__background-screen: #e7f1f5;
+$color__background-hr: #292b26;
+$color__background-button: #591B0C;
+$color__background-pre: #292b26;
+$color__background-ins: #292b26;
+$color__background-header:#5fd3e2;
+
+//$color__text-screen: #424856;
+$color__text-screen: #292b26;
+$color__text-input: #292b26;
 $color__text-input-focus: #111;
-$color__link: #4169e1; //royalblue
-$color__link-visited: #800080; //purple
-$color__link-hover: #191970; //midnightblue
-$color__text-main: #404040;
+$color__link: #d50943; 
+$color__link-visited: #d50943; 
+//$color__link-hover: #591B0C; 
+$color__link-hover: #d50943;
+$color__text-main: #292b26;
 
-$color__border-button: #ccc #ccc #bbb;
-$color__border-button-hover: #ccc #bbb #aaa;
+//$color__text-heading:#890c1d;
+$color__text-heading:#d50943;
+
+$color__border-button: #e7f1f5 #e7f1f5 #bbb;
+$color__border-button-hover: #e7f1f5 #bbb #aaa;
 $color__border-button-focus: #aaa #bbb #bbb;
-$color__border-input: #ccc;
+$color__border-input: #e7f1f5;
 $color__border-abbr: #666;
+
+$color__black: #000;
+
+$color__white: #fff;
+
+$color__menu_link:#292b26;

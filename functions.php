@@ -51,7 +51,9 @@ if ( ! function_exists( 'ripple_wp_setup' ) ) :
 		// This theme uses wp_nav_menu() in one location.
 		register_nav_menus(
 			array(
-				'menu-1' => esc_html__( 'Primary', 'ripple-wp' ),
+                'primary-menu' => esc_html__( 'Primary', 'ripple-wp' ),
+                'top-menu' => esc_html__( 'Top Bar', 'ripple-wp' ),
+                'footer-menu' => esc_html__( 'Footer', 'ripple-wp' ),
 			)
 		);
 
@@ -78,14 +80,21 @@ if ( ! function_exists( 'ripple_wp_setup' ) ) :
 			apply_filters(
 				'ripple_wp_custom_background_args',
 				array(
-					'default-color' => 'ffffff',
+					'default-color' => '#ffffff',
 					'default-image' => '',
 				)
 			)
 		);
 
 		// Add theme support for selective refresh for widgets.
-		add_theme_support( 'customize-selective-refresh-widgets' );
+        add_theme_support( 'customize-selective-refresh-widgets' );
+        
+        // Add support for editor styles.
+        add_theme_support( 'editor-styles' );
+
+        add_theme_support( 'wp-block-styles' );
+
+        add_theme_support( 'align-wide' );
 
 		/**
 		 * Add support for core custom logo.
@@ -133,18 +142,157 @@ function ripple_wp_widgets_init() {
 			'before_title'  => '<h2 class="widget-title">',
 			'after_title'   => '</h2>',
 		)
+    );
+
+    register_sidebar(
+		array(
+			'name'          => esc_html__( 'Above Footer Widget Area', 'ripple-wp' ),
+			'id'            => 'footer-top',
+			'description'   => esc_html__( 'Add widgets here.', 'ripple-wp' ),
+			'before_widget' => '<section id="%1$s" class="widget %2$s">',
+			'after_widget'  => '</section>',
+			'before_title'  => '<h2 class="widget-title">',
+			'after_title'   => '</h2>',
+		)
+    );
+    
+    register_sidebar(
+		array(
+			'name'          => esc_html__( 'Footer Widget 1', 'ripple-wp' ),
+			'id'            => 'footer-widget-1',
+			'description'   => esc_html__( 'Add widgets here.', 'ripple-wp' ),
+			'before_widget' => '<section id="%1$s" class="widget %2$s">',
+			'after_widget'  => '</section>',
+			'before_title'  => '<h2 class="widget-title">',
+			'after_title'   => '</h2>',
+		)
+    );
+    
+    register_sidebar(
+		array(
+			'name'          => esc_html__( 'Footer Widget 2', 'ripple-wp' ),
+			'id'            => 'footer-widget-2',
+			'description'   => esc_html__( 'Add widgets here.', 'ripple-wp' ),
+			'before_widget' => '<section id="%1$s" class="widget %2$s">',
+			'after_widget'  => '</section>',
+			'before_title'  => '<h2 class="widget-title">',
+			'after_title'   => '</h2>',
+		)
+    );
+    
+    register_sidebar(
+		array(
+			'name'          => esc_html__( 'Footer Widget 3', 'ripple-wp' ),
+			'id'            => 'footer-widget-3',
+			'description'   => esc_html__( 'Add widgets here.', 'ripple-wp' ),
+			'before_widget' => '<section id="%1$s" class="widget %2$s">',
+			'after_widget'  => '</section>',
+			'before_title'  => '<h2 class="widget-title">',
+			'after_title'   => '</h2>',
+		)
+    );
+    
+    register_sidebar(
+		array(
+			'name'          => esc_html__( 'Footer Widget 4', 'ripple-wp' ),
+			'id'            => 'footer-widget-4',
+			'description'   => esc_html__( 'Add widgets here.', 'ripple-wp' ),
+			'before_widget' => '<section id="%1$s" class="widget %2$s">',
+			'after_widget'  => '</section>',
+			'before_title'  => '<h2 class="widget-title">',
+			'after_title'   => '</h2>',
+		)
 	);
 }
 add_action( 'widgets_init', 'ripple_wp_widgets_init' );
+
+// Adds support for editor color palette.
+
+/*$text_color = get_theme_mod('text_color');
+if(!empty(get_theme_mod('text_color'))){
+    $text_color = get_theme_mod('text_color');
+}else{
+    $text_color = '#292b26';
+}*/
+
+function theme_colors($color_option, $default_color){
+    $var = '$'.$color_option;
+    if(!empty(get_theme_mod($color_option) ) ){
+        $var = get_theme_mod($color_option);
+    }else{
+        $var = $default_color;
+    }
+
+    return $var;
+}
+
+$text_color = theme_colors('text_color', '#292b26');
+
+$accent_color = theme_colors('accent_color', '#d50943' );
+
+$theme_color_one = theme_colors('top_bar_footer_color', '#5fd3e2');
+
+$theme_color_two = theme_colors('header_color', '#ffffff');
+
+add_theme_support( 'editor-color-palette', array(
+    array(
+		'name'  => __( 'Text Color', 'genesis-sample' ),
+		'slug'  => 'text-color',
+		'color' => $text_color,
+    ),
+    array(
+		'name'  => __( 'Accent Color', 'genesis-sample' ),
+		'slug'  => 'accent-color',
+		'color' => $accent_color,
+	),
+	array(
+		'name'  => __( 'Theme Color 1', 'ripple_wp' ),
+		'slug'  => 'theme-color-one',
+		'color'	=> $theme_color_one,
+    ),
+    
+    array(
+		'name'  => __( 'Theme Color 2', 'ripple_wp' ),
+		'slug'  => 'theme-color-two',
+		'color'	=> $theme_color_two,
+	),
+) );
+
+/** Enqueue Google Fonts */
+function ripple_wp_google_fonts(){
+    $font_option = get_theme_mod('theme_font_options');
+
+    switch ($font_option) {
+        case 'Cormorant Garamond':
+            wp_enqueue_style('cormorant-garamond', 'https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap rel="stylesheet"', array(), _S_VERSION);
+        break;
+        case 'Proza Libre':
+            wp_enqueue_style('proza-libre', 'https://fonts.googleapis.com/css2?family=Proza+Libre:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500;1,600;1,700;1,800&display=swap rel="stylesheet"', array(), _S_VERSION);
+        break;
+        case 'Rubik':
+            wp_enqueue_style('rubik', 'https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap rel="stylesheet"', array(), _S_VERSION);
+        break;
+        case 'Roboto':
+            wp_enqueue_style('roboto', 'https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap rel="stylesheet"', array(), _S_VERSION);
+        break;
+        case 'Montserrat':
+            wp_enqueue_style('montserrat', 'https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap rel="stylesheet"', array(), _S_VERSION);
+        break;  
+    }
+}
+add_action( 'wp_enqueue_scripts', 'ripple_wp_google_fonts' );
 
 /**
  * Enqueue scripts and styles.
  */
 function ripple_wp_scripts() {
     wp_enqueue_style( 'ripple-wp-style', get_stylesheet_uri(), array(), _S_VERSION );
-    wp_enqueue_style( 'google-fonts', 'https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,600;0,700;0,800;1,300;1,400;1,600;1,700;1,800&display=swap" rel="stylesheet', array(), _S_VERSION );
 
-	wp_style_add_data( 'ripple-wp-style', 'rtl', 'replace' );
+    wp_enqueue_style( 'open-sans', 'https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,600;0,700;0,800;1,300;1,400;1,600;1,700;1,800&display=swap" rel="stylesheet', array(), _S_VERSION );
+
+    wp_enqueue_script('fontawesome', 'https://kit.fontawesome.com/991c67fc22.js', array(), _S_VERSION);
+
+    wp_style_add_data( 'ripple-wp-style', 'rtl', 'replace' );
 
 	wp_enqueue_script( 'ripple-wp-navigation', get_template_directory_uri() . '/js/navigation.js', array(), _S_VERSION, true );
 
@@ -153,6 +301,12 @@ function ripple_wp_scripts() {
 	}
 }
 add_action( 'wp_enqueue_scripts', 'ripple_wp_scripts' );
+
+/*function ripple_wp_admin_scripts(){
+    wp_enqueue_script( 'ripple-wp-theme-scripts', get_template_directory_uri() . '/js/theme_scripts.js', array( 'jquery' ), _S_VERSION, true );
+}*/
+
+//add_action( 'admin_enqueue_scripts', 'ripple_wp_admin_scripts' );
 
 /**
  * Implement the Custom Header feature.
@@ -181,3 +335,186 @@ if ( defined( 'JETPACK__VERSION' ) ) {
 	require get_template_directory() . '/inc/jetpack.php';
 }
 
+/**
+ * Theme Options Page
+ */
+require get_template_directory() . '/inc/theme_options.php';
+
+/**Top Menu */
+function wp_ripple_topbar() {
+    $class = wp_ripple_search_class();
+    if( get_theme_mod( 'show_topbar') == true ){
+    ?>
+        <div class="topbar <?php echo $class; ?>">    
+            <div class="wrapper align-right">
+                <?php ripple_wp_top_menu(); ?>
+            </div>
+        
+        </div>
+        <?php
+    }
+}
+
+function wp_ripple_search_class(){
+    $show_search = get_theme_mod( 'add_search_icon' );
+    if( $show_search == 'top_bar' ) {
+        $class = "search";
+    }else{
+        $class='';
+    }
+
+    return $class;
+}
+
+
+function ripple_wp_top_menu(){
+
+    if ( has_nav_menu( 'top-menu' ) ) {
+        wp_nav_menu(
+            array(
+                'theme_location' => 'top-menu',
+                'menu_id'        => 'top-menu',
+            )
+        );
+    } 
+}
+
+function ripple_wp_search_option(){
+    
+    ?>
+    <div id="rp_search_form"><?php //get_search_form(); ?></div>
+<?php
+}
+
+
+function ripple_wp_add_search_toggle($items, $args) {
+    $show_search    = get_theme_mod( 'add_search_icon' );
+    if( $show_search == 'top_bar' ) {
+        if( $args->theme_location == 'top-menu' ){
+            $items .=  '<li class="menu-item">';
+            $items .= get_search_form($echo = false);
+            $items .= '</li>';
+        }
+    }elseif($show_search == 'primary_menu'){
+        if( $args->theme_location == 'primary-menu' ){
+            $items .=  '<li class="menu-item">';
+            $items .= get_search_form($echo = false);
+            $items .= '</li>';
+        }
+    }   
+     
+    return $items;
+}
+add_filter('wp_nav_menu_items', 'ripple_wp_add_search_toggle', 10, 2);
+
+/*$show_search    = get_theme_mod( 'add_search_icon' );
+if( $show_search == 'top_bar' ) {
+    add_filter('wp_nav_menu_items', 'ripple_wp_add_search_toggle', 10, 2);
+}*/
+
+
+/**Custom Header Image */
+function ripple_wp_custom_header_image(){
+    ?>
+    <a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home">
+        <img src="<?php header_image(); ?>" width="<?php echo absint( get_custom_header()->width ); ?>" height="<?php echo absint( get_custom_header()->height ); ?>" alt="<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>">
+    </a>
+    <?php
+}
+
+/**Excerpt Length */
+// Limit except length to 125 characters.
+// tn limited excerpt length by number of characters
+function ripple_wp_get_excerpt( $count ) {
+    global $post;
+    $permalink = get_permalink($post->ID);
+    $excerpt = get_the_content();
+    $excerpt = strip_tags($excerpt);
+    $excerpt = substr($excerpt, 0, $count);
+    $excerpt = substr($excerpt, 0, strripos($excerpt, " "));
+    $excerpt = '<p>'.$excerpt.'... <a href="'.$permalink.'">Read More</a></p>';
+    //return $excerpt;
+    echo $excerpt;
+}
+
+/**Header Display Options */
+function ripple_wp_is_left_logo(){
+    if(get_theme_mod('header_layout_options') == "logo_left"){
+        return true;
+    }
+}
+
+
+add_action( 'add_meta_boxes', 'ripple_wp_page_add_meta_box' );
+
+if ( ! function_exists( 'ripple_wp_page_add_meta_box' ) ) {
+	/**
+	 * Add meta box to page screen
+	 *
+	 * This function handles the addition of variuos meta boxes to your page or post screens.
+	 * You can add as many meta boxes as you want, but as a rule of thumb it's better to add
+	 * only what you need. If you can logically fit everything in a single metabox then add
+	 * it in a single meta box, rather than putting each control in a separate meta box.
+	 *
+	 * @since 1.0.0
+	 */
+	function ripple_wp_page_add_meta_box() {
+		add_meta_box( 'additional-page-metabox-options', esc_html__( 'Ripple WP Page Settings', 'ripple_wp' ), 'ripple_wp_page_metabox_controls', 'page', 'side', 'low' );
+	}
+}
+
+/**
+ * Callback function for our meta box.  Echos out the content
+ */
+function ripple_wp_page_metabox_controls( $post )
+{
+    $meta = get_post_meta( $post->ID );
+    //Option to hide the page title
+    $ripple_wp_hide_page_title = ( isset( $meta['ripple_wp_hide_page_title'][0] ) &&  '1' === $meta['ripple_wp_hide_page_title'][0] ) ? 1 : 0;
+
+    wp_nonce_field( 'ripple_wp_page_control_meta_box', 'ripple_wp_page_control_meta_box_nonce' ); // Always add nonce to your meta boxes!
+    ?>
+    <div class="page_meta_extras">
+        <p>
+            <label><input type="checkbox" name="ripple_wp_hide_page_title" value="1" <?php checked( $ripple_wp_hide_page_title, 1 ); ?> /><?php esc_attr_e( 'Hide Page Title', 'ripple_wp' ); ?></label>
+        </p>
+    </div>
+    <?php
+    
+    //Option to hide the header and footer
+
+}
+
+//Saving the metabox data
+add_action( 'save_post', 'ripple_wp_page_save_metaboxes' );
+if ( ! function_exists( 'ripple_wp_page_save_metaboxes' ) ) {
+
+    function ripple_wp_page_save_metaboxes( $post_id ) {
+
+        if ( ! isset( $_POST['ripple_wp_page_control_meta_box_nonce'] ) || ! wp_verify_nonce( sanitize_key( $_POST['ripple_wp_page_control_meta_box_nonce'] ), 'ripple_wp_page_control_meta_box' ) ) { // Input var okay.
+			return $post_id;
+        }
+        
+        // Check the user's permissions.
+		if ( isset( $_POST['post_type'] ) && 'page' === $_POST['post_type'] ) { // Input var okay.
+			if ( ! current_user_can( 'edit_page', $post_id ) ) {
+				return $post_id;
+			}
+		} else {
+			if ( ! current_user_can( 'edit_post', $post_id ) ) {
+				return $post_id;
+			}
+        }
+        
+        /*
+		 * If this is an autosave, our form has not been submitted,
+		 * so we don't want to do anything.
+		 */
+		if ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) {
+			return $post_id;
+        }
+        
+        $ripple_wp_hide_page_title = ( isset( $_POST['ripple_wp_hide_page_title'] ) && '1' === $_POST['ripple_wp_hide_page_title'] ) ? 1 : 0; // Input var okay.
+		update_post_meta( $post_id, 'ripple_wp_hide_page_title', esc_attr( $ripple_wp_hide_page_title ) );
+    }
+}

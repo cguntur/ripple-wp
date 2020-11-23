@@ -6,3 +6,18 @@ h5,
 h6 {
 	clear: both;
 }
+
+h1{
+    //font-size:30px;
+    font-size:2em;
+    font-weight:400;
+
+    &.site-title{
+        font-size:45px;
+    }
+
+    a{
+        text-decoration: none;
+        color:$color__text-heading;
+    }
+}

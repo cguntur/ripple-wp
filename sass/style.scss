@@ -1,16 +1,16 @@
 /*!
-Theme Name: ripple-wp
-Theme URI: http://underscores.me/
-Author: Chandrika Guntur
+Theme Name: RippleWP
+Theme URI: https://www.chamberdashboard.com
+Author: Chamber Dashboard
 Author URI: https://www.chamberdashboard.com
-Description: Description
+Description: RippleWP is a responsive, multipurpose WordPress theme designed especially for associations, chambers of commerce and membership organizations. This theme is built for simplicity and ease of use. It has a clean, professional look that will make your site stand out. RippleWP works with the Chamber Dashboard suite of plugins to add features most used by membership organizations such as welcoming new members, featuring upcoming events, recognizing sponsors, as well as helping you create a robust Business Directory for your site. 
 Version: 1.0.0
 Tested up to: 5.4
 Requires PHP: 5.6
 License: GNU General Public License v2 or later
 License URI: LICENSE
 Text Domain: ripple-wp
-Tags: custom-background, custom-logo, custom-menu, featured-images, threaded-comments, translation-ready
+Tags: custom-background, custom-logo, custom-menu, featured-images, threaded-comments, translation-ready, Gutenberg block ready, full-width-template, flexible-header, custom-colors, custom-header, flexbox footer-widgets, blog, theme-options, cross-browser compatible, SEO-friendly, rtl-language-support, chamber of commerce, professional membership association, visitor bureau, alumni groups, merchant association, social clubs
 
 This theme, like WordPress, is licensed under the GPL.
 Use it to make something cool, have fun, and share what you've learned.
@@ -100,3 +100,674 @@ Nicolas Gallagher and Jonathan Neal https://necolas.github.io/normalize.css/
 /* Alignments
 --------------------------------------------- */
 @import "utilities/alignments";
+*{
+    margin:0;
+    padding:0;
+}
+
+body{
+    &.page, &.post{
+        margin:0;
+        padding:0;
+    }
+}
+
+.topbar{
+    background:$color__background-header;
+    color:$color__background-screen;
+    min-height:30px;
+
+    &.search .wrapper{
+        display:grid;
+        /*grid-template-columns: 10fr 2fr;*/
+    }
+
+    p{
+        padding-top:10px;
+    }
+
+    .search_icon{
+        color:$color__background-body;
+    }
+}
+
+.wrapper{
+    width:$content__width--wide;
+    margin:0 auto;
+    max-width:$content__width--max-large-screen;
+}
+
+.sidebar_wrapper{
+    //max-width: $content__width--wide;
+    margin: 0 auto;
+    //padding: 10px;
+
+    @media screen and (min-width: 992px){
+        display:flex;
+        max-width: $content__width--wide;
+        padding: 10px;
+
+        .site-main{
+            width:$content__width--wide;
+            max-width:70%;
+            padding:10px;
+
+        }
+    }
+
+    aside{
+        &#secondary{
+            /*padding-left:15px;*/
+            margin: 0 auto;
+            width:20%;
+        }
+        h2{
+            text-align:center;
+        }
+    }
+
+}
+
+header{
+    text-align:center;
+
+    .wp-custom-header {
+        width:100%;
+        line-height:0;
+        img{
+            width:100%;
+        }
+    }
+
+    &.entry-header{
+        text-align: center;
+        /*background: $color__background-header;*/
+        padding: 15px;
+
+        h1{
+            //font-size:40px
+            font-size:2em; // checking for responsive fonts
+        }
+        
+    }
+}
+
+.wp-custom-header{
+    img{
+        width:100%;
+    }
+}
+
+.site-header{
+    &.transparent_header{
+        position: absolute;
+        width: 100%;
+        opacity: 90%;
+    }
+    &.no_header_image{
+        position:relative;
+    }
+}
+
+/** Styles for the second header layout*/ 
+
+.site-header{
+    .left_header{
+        /*display: grid;
+        grid-template-columns: 2fr 3fr;*/
+
+        .site-branding{
+            padding:15px;
+
+            a{
+                margin-bottom:0px;
+            }
+
+            h1.site-title{
+                margin-top: 0px;
+                margin-bottom: 0px;
+                //font-size: 35px; //checking for responsive fonts
+                font-size:2rem;
+            }
+        }
+
+        .topbar{
+            a{
+                color:$color__link;
+                font-weight:bold;
+            }
+            color:$color__menu_link;
+            ul{
+                &#top-menu{
+                    color:$color__menu_link;
+
+                    li{
+                        a{
+                            color:$color__link; 
+                            font-weight:bold;
+                        }
+                    }
+                }
+            }
+        }
+        .menu{
+            align-self: flex-end;
+            text-align:right;
+        }
+
+        .main-navigation{
+            background:none;
+            ul{
+                justify-content:flex-end;
+                li:last-item{
+                    padding-right:0px;
+                }
+                
+                ul{
+                    background:$color__white;
+                    display: block;
+                    text-align: left;
+                    padding: 0px 10px;
+                    &.sub-menu{
+                        li a:after{
+                            content:none;
+                        }
+                    }
+                    &.sub-menu{
+                        width:200px;
+                        li{
+                            ul{
+                                margin-left:130px;
+                            }
+                        }
+                    }
+                    
+                }
+            }
+        }
+        .logo_menu_wrapper{
+            .wrapper{
+                display:flex;
+                justify-content: space-between;
+            }
+        }
+    }
+}
+
+aside{
+    &#secondary{
+        /*padding:15px;*/
+        max-width: 500px;
+        width: $content__width;
+        margin: 0 auto;
+    }
+
+    h2{
+        &.widget-title{
+            font-size:28px;
+            font-weight:400;
+        }
+    }
+}
+
+
+.align-right{
+    text-align:right;
+}
+
+.site-branding{
+    text-align:center;
+}
+
+/*Search Styles*/ 
+
+/*#rp_search_form form.search-form {
+    position: absolute;
+}*/
+
+.menu .topbar.search .search-form:before, .menu #primary-menu .search-form:before{
+    color:$color__menu_link;
+}
+
+.topbar.search .search-form:before, #primary-menu .search-form:before  {
+    content: "\f179";
+    color: $color__menu_link;
+    position: relative;
+    top: 6px;
+    left: 30px;
+    font: normal 20px/1 dashicons!important;
+    content: "\f179";
+    speak: none;
+    -webkit-font-smoothing: antialiased;
+}
+
+.topbar.search .search-field, #primary-menu .search-field {
+    background-color: transparent;
+    background-size: 24px 24px;
+    border: none;
+    cursor: pointer;
+    /*height: 37px;
+    margin: 3px 0;*/
+    padding: 0 0 0 34px;
+    position: relative;
+    -webkit-transition: width 400ms ease, background 400ms ease;
+    transition:         width 400ms ease, background 400ms ease;
+    width: 0;
+}
+
+.topbar.search .search-field:focus, #primary-menu .search-field:focus {
+    background-color: #fff;
+    border: 2px solid #c3c0ab;
+    cursor: text;
+    outline: 0;
+    width: 230px;
+}
+
+.topbar.search .search-submit, #primary-menu .search-submit{
+    display: none;
+}
+
+.site-description{
+    font-size:18px;
+}
+
+/** Footer Styles*/
+
+footer{
+    &.site-footer{
+        margin-top: 100px;
+        background: $color__background-header;
+    }
+
+    .footer-widgets{
+        max-width:$content__width--max-large-screen;
+        margin:0 auto;
+        margin-bottom:30px;
+        display:flex;
+        flex-direction:column;
+        padding-top:30px;
+
+        @media screen and (min-width:768px){
+            flex-wrap:wrap; 
+            flex-direction:row;   
+        }
+
+        @media screen and (min-width:992px){
+            flex-direction:row;
+        }
+    }
+
+    .widget-column {
+        /*flex-basis: 0;*/
+        flex-grow: 1;
+        padding-left: 15px;
+        padding-right: 15px;
+        text-align:center;
+
+        @media screen and (min-width:600px){
+            //flex:50%;
+        }
+
+        @media screen and (min-width:992px){
+            //flex:25%;
+        }
+
+        ul{
+            text-align:left;
+        }
+
+        .wp-calendar-nav-prev{
+            text-align:left;
+            display:block;
+        }
+    }
+
+    .site-info{
+        padding-left: 15px;
+        padding-right: 15px;
+        max-width:$content__width--max-large-screen;
+        margin:0 auto;
+        text-align:center;
+        padding-bottom:30px;
+    }
+}
+
+
+
+
+
+/** Gutenberg block Styles*/
+
+body, #page{
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+}
+
+main{
+    flex:1;
+}
+
+.page .entry-content .alignfull .wp-block-group.alignwide, .page .entry-content .alignfull>* {
+    width: $content__width;
+    max-width: $content__width--max-large-screen;
+    margin-left: auto;
+    margin-right: auto;
+}
+.page{
+    &.page-template-page-fullwidth{
+        .entry-content> *:not(.alignwide):not(.alignfull):not(.alignleft):not(.alignright):not(.is-style-wide), footer.entry-footer> *:not(.alignwide):not(.alignfull):not(.alignleft):not(.alignright):not(.is-style-wide) {
+            max-width:none;
+        }    
+    }
+    .entry-content> *:not(.alignwide):not(.alignfull):not(.alignleft):not(.alignright):not(.is-style-wide), footer.entry-footer> *:not(.alignwide):not(.alignfull):not(.alignleft):not(.alignright):not(.is-style-wide) {
+        margin-left: auto;
+        margin-right: auto;
+        width: $content__width;
+        max-width: $max_content__width;
+     }
+
+     .entry-content{
+        margin-left: auto;
+        margin-right: auto;
+        margin-top:0px;
+
+        .wp-block-group.alignwide>*{
+            max-width:none;
+            .alignwide{
+                max-width:none;
+            }
+        }
+
+        .alignwide {
+            max-width: $content__width--wide; 
+            margin:0 auto;
+
+            @media screen and (min-width:1300px){
+                max-width:1200px;
+            }
+        }
+    
+        .alignfull {
+            max-width: none;
+        }
+     }
+
+     main.site-main{
+         article{
+             .entry-footer{
+                 margin-left:auto;
+                 margin-right:auto;
+             }
+         }
+     }
+}
+
+.page{
+    &.page-template-page-with-sidebar{
+        .alignwide {
+            max-width: $content__width--wide; 
+            margin:0 auto;
+
+            @media screen and (min-width:1300px){
+                max-width:$content__width--wide;
+            }
+        }
+    }
+}
+
+.home{
+    article> *:not(.alignwide):not(.alignfull):not(.alignleft):not(.alignright):not(.is-style-wide) {
+        margin-left: auto;
+        margin-right: auto;
+     }
+
+     &.blog article> *:not(.alignwide):not(.alignfull):not(.alignleft):not(.alignright):not(.is-style-wide) {
+         margin-left:0px;
+     }
+
+     article{
+        margin-left: auto;
+        margin-right: auto;
+        
+        .alignwide {
+            max-width: $content__width--wide; 
+            margin:0 auto;
+        }
+    
+        .alignfull {
+            max-width: none;
+        }
+     }
+}
+
+.blog main.site-main{
+    margin-left: auto;
+    margin-right: auto;
+    width: $content__width;
+    max-width: $max_content__width;
+
+    &.grid{
+        width:$content__width--wide;
+        max-width:none;
+    }
+
+    .alignwide {
+        max-width: $content__width--wide; 
+        margin:0 auto;
+    }
+
+    .alignfull {
+        max-width: none;
+    }
+}
+
+/** Blog Page List Styles*/
+.blog{
+    .site-main{
+        article{
+            border-bottom:#000 thin solid;
+            header{
+                &.entry-header{
+                    text-align:left;
+                    background:none;
+                    padding:0px;
+    
+                    h2{
+                        margin-bottom:0px;
+                        a{
+                            font-size:45px;
+                            text-decoration: none;
+                            text-transform: uppercase;
+                        }
+                    }
+                    .entry-meta{
+                        font-size: 13px;
+                        font-style: italic;
+
+                        .author{
+                            padding-left:30px;
+                        }
+                    }
+                }
+            }
+            .entry-footer{
+                font-size: 14px;
+                margin-left:0px;
+                .cat-links a{
+                    font-weight: 600;
+                }
+            }
+            
+            a.post-thumbnail{
+                width: 30%;
+                float: right;
+                padding-top: 30px;
+            }
+            .entry-content{
+                width: 60%;
+            }
+        }
+    }
+}
+
+/** Blog Page Grid Styles */
+.blog{
+    .site-main{
+        .grid_layout{
+            display:grid;
+            grid-template-columns: repeat( auto-fill, minmax(300px, 1fr) );
+
+            article{
+                border-bottom:none;
+                padding:15px;
+                header{
+                    &.entry-header{
+                        text-align:left;
+                        background:none;
+                        padding:0px;
+        
+                        h2{
+                            margin-bottom:0px;
+                            a{
+                                font-size:35px;
+                                text-decoration: none;
+                                text-transform:none;
+                            }
+                        }
+                        .entry-meta{
+                            font-size: 13px;
+                            font-style: italic;
+    
+                            .author{
+                                padding-left:30px;
+                            }
+                        }
+                    }
+                }
+                .entry-footer{
+                    font-size: 14px;
+                    margin-left:0px;
+                    .cat-links a{
+                        font-weight: 600;
+                    }
+                    .comments-link, .tags-links{
+                        display:none;
+                    }
+                }
+                
+                a.post-thumbnail{
+                    padding-top: 0px;
+                    width: 100%;
+                    float:none;
+                }
+                .entry-content{
+                    width: 100%;
+                }
+            }
+        }
+    }
+}
+
+main.site-main, .archive.site-main{
+    .entry-header{
+        .author{
+            padding-left:40px;
+        }
+    }
+    article{
+        padding:0px 0px 45px 0px;
+        
+        
+
+        .entry-footer{
+            margin-top:15px;
+            margin-left:0px;
+            .cat-links, .tags-links, .comments-link, .edit-link{
+                display:block;
+                padding-bottom:10px;
+            }
+        }
+
+    }
+}
+
+/**Single Post Styles */
+.single{
+    #comments{
+        margin-top:50px;
+        border-top:#000 thin solid;
+    }
+    article >*:not(.alignwide):not(.alignfull):not(.alignleft):not(.alignright):not(.is-style-wide), .navigation, #comments{
+        margin-left: auto;
+        margin-right: auto;
+        width: $content__width;
+        max-width: $max_content__width;
+    }
+    article{
+        margin-top:40px;
+
+        .alignwide {
+            max-width: $content__width--wide; 
+            margin:0 auto;
+        }
+    
+        .alignfull {
+            max-width: none;
+        }
+    }
+
+    
+}
+
+#footer_top{
+    width: $content__width;
+    max-width: $max_content__width;
+    margin-left:auto;
+    margin-right:auto;
+}
+
+footer{
+    &.entry-footer{
+        width: $content__width;
+        margin: 0 auto;
+        max-width: $max_content__width;
+    }
+}
+
+.archive{
+    .site-main >*:not(.alignwide):not(.alignfull):not(.alignleft):not(.alignright):not(.is-style-wide){
+        width: $content__width;
+        max-width: $max_content__width;
+        margin-left:auto;
+        margin-right:auto;
+    }
+
+    .site-main{
+        .alignwide {
+            max-width: $content__width--wide; 
+            margin:0 auto;
+        }
+    
+        .alignfull {
+            max-width: none;
+        }
+    }
+}
+
+button.menu-toggle{
+    background:none;
+    border:none;
+    width:100%;
+}
+
+
+.widget_search{
+    text-align:center;
+}
+
+/** Adjusting for BD Styles*/
+
+#businesslist .business .email a, #businesslist .business .categories{
+    overflow-wrap: break-word;
+}

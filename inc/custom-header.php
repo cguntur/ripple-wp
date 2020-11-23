@@ -23,8 +23,8 @@ function ripple_wp_custom_header_setup() {
 			'ripple_wp_custom_header_args',
 			array(
 				'default-image'      => '',
-				'default-text-color' => '000000',
-				'width'              => 1000,
+				'default-text-color' => '#890c1d',
+				//'width'              => 1000,
 				'height'             => 250,
 				'flex-height'        => true,
 				'wp-head-callback'   => 'ripple_wp_header_style',

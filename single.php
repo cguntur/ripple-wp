@@ -17,11 +17,11 @@ get_header();
 			the_post();
 
 			get_template_part( 'template-parts/content', get_post_type() );
-
+            
 			the_post_navigation(
 				array(
-					'prev_text' => '<span class="nav-subtitle">' . esc_html__( 'Previous:', 'ripple-wp' ) . '</span> <span class="nav-title">%title</span>',
-					'next_text' => '<span class="nav-subtitle">' . esc_html__( 'Next:', 'ripple-wp' ) . '</span> <span class="nav-title">%title</span>',
+					'prev_text' => '<span class="nav-subtitle">' . esc_html__( '', 'ripple-wp' ) . '</span> <span class="nav-title">%title</span>',
+					'next_text' => '<span class="nav-subtitle">' . esc_html__( '', 'ripple-wp' ) . '</span> <span class="nav-title">%title</span>',
 				)
 			);
 
@@ -36,5 +36,5 @@ get_header();
 	</main><!-- #main -->
 
 <?php
-get_sidebar();
+//get_sidebar();
 get_footer();
