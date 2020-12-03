@@ -258,26 +258,67 @@ add_theme_support( 'editor-color-palette', array(
 	),
 ) );
 
+function ripple_wp_set_theme_colors_for_editor(){
+    ?>
+    <style type="text/css">
+        .has-text-color-background-color{
+            background-color: <?php echo $text_color; ?>
+        }
+
+        .has-text-color-color{
+            color: <?php echo $text_color; ?>
+        }
+
+        .has-accent-color-background-color{
+            background-color: <?php echo $accent_color; ?>
+        }
+
+        .has-accent-color-color{
+            color: <?php echo $accent_color; ?>
+        }
+
+        .has-theme-color-one-background-color{
+            background-color: <?php echo $theme_color_one; ?>
+        }
+
+        .has-theme-color-one-color{
+            color: <?php echo $theme_color_one; ?>
+        }
+
+        .has-theme-color-two-background-color{
+            background-color: <?php echo $theme_color_two; ?>
+        }
+
+        .has-theme-color-two-color{
+            color: <?php echo $theme_color_two; ?>
+        }
+    </style>
+    <?php
+}
+
 /** Enqueue Google Fonts */
 function ripple_wp_google_fonts(){
-    $font_option = get_theme_mod('theme_font_options');
+    $font_option = get_theme_mod('header_font_options');
 
     switch ($font_option) {
-        case 'Cormorant Garamond':
-            wp_enqueue_style('cormorant-garamond', 'https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap rel="stylesheet"', array(), _S_VERSION);
-        break;
-        case 'Proza Libre':
-            wp_enqueue_style('proza-libre', 'https://fonts.googleapis.com/css2?family=Proza+Libre:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500;1,600;1,700;1,800&display=swap rel="stylesheet"', array(), _S_VERSION);
-        break;
-        case 'Rubik':
-            wp_enqueue_style('rubik', 'https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap rel="stylesheet"', array(), _S_VERSION);
-        break;
         case 'Roboto':
-            wp_enqueue_style('roboto', 'https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap rel="stylesheet"', array(), _S_VERSION);
+            wp_enqueue_style('roboto', 'https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet"', array(), _S_VERSION);
         break;
-        case 'Montserrat':
-            wp_enqueue_style('montserrat', 'https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap rel="stylesheet"', array(), _S_VERSION);
+        case 'Slabo':
+            wp_enqueue_style('slabo', 'https://fonts.googleapis.com/css2?family=Slabo+27px&display=swap" rel="stylesheet"', array(), _S_VERSION);
+        break;
+        case 'Oswald':
+            wp_enqueue_style('oswald', 'https://fonts.googleapis.com/css2?family=Oswald:wght@200;300;400;500;600;700&display=swap" rel="stylesheet"', array(), _S_VERSION);
+        break;
+        case 'Cairo':
+            wp_enqueue_style('cairo', 'https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;600;700;900&display=swap" rel="stylesheet"', array(), _S_VERSION);
+        break;
+        case 'BioRhyme':
+            wp_enqueue_style('biorhyme', 'https://fonts.googleapis.com/css2?family=BioRhyme:wght@200;300;400;700&display=swap" rel="stylesheet"', array(), _S_VERSION);
         break;  
+        case 'Rakkas':
+            wp_enqueue_style('rakkas', 'https://fonts.googleapis.com/css2?family=Rakkas&display=swap" rel="stylesheet"', array(), _S_VERSION);
+        break;
     }
 }
 add_action( 'wp_enqueue_scripts', 'ripple_wp_google_fonts' );
@@ -518,3 +559,47 @@ if ( ! function_exists( 'ripple_wp_page_save_metaboxes' ) ) {
 		update_post_meta( $post_id, 'ripple_wp_hide_page_title', esc_attr( $ripple_wp_hide_page_title ) );
     }
 }
+
+/*
+*
+* Walker for the main menu 
+*
+*/
+//add_filter( 'walker_nav_menu_start_el', 'add_arrow',10,4);
+function add_arrow( $output, $item, $depth, $args ){
+
+    //Only add class to 'top level' items on the 'primary' menu.
+    if('primary-menu' == $args->theme_location && $depth === 0 ){
+        if (in_array("menu-item-has-children", $item->classes)) {
+            $output .='<i class="fas fa-angle-down"></i>';
+        }
+    }
+    return $output;
+}
+
+//Admin notices when theme is activated
+
+/* Display a notice that can be dismissed */
+
+function ripple_wp_display_install_notice() {
+    global $current_user ;
+    $customizer_url = self_admin_url() . 'customize.php';
+        $user_id = $current_user->ID;
+        /* Check that the user hasn't already clicked to ignore the message */
+	if ( ! get_user_meta($user_id, 'ripple_wp_admin_notice_ignore') ) {
+    echo '<div class="notice notice-info is-dismissible ripple_wp_update_notice"><p>';
+    printf(__('<b>Thanks for choosing the RippleWP Theme!</b><br /><br /> We have some beautiful layouts to get your site up and running asap. Install the <a href="https://chamberdashboard.com/downloads/ripplewp-theme-package1/" target="_blank">Layout Block Plugin</a> to choose a demo layout or get started <a href="'.$customizer_url.'">customizing</a> your site. | <a href="%1$s">Hide Notice</a>'), '?ripple_wp_notice_ignore=0');
+    echo "</p></div>";
+	}
+}
+add_action( 'admin_notices', 'ripple_wp_display_install_notice' );
+
+function ripple_wp_admin_notice_ignore() {
+	global $current_user;
+        $user_id = $current_user->ID;
+        /* If user clicks to ignore the notice, add that to their user meta */
+        if ( isset($_GET['ripple_wp_admin_notice_ignore']) && '0' == $_GET['ripple_wp_admin_notice_ignore'] ) {
+             add_user_meta($user_id, 'ripple_wp_admin_notice_ignore', 'true', true);
+	}
+}
+add_action('admin_init', 'ripple_wp_admin_notice_ignore');

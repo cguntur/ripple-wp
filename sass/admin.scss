@@ -3,19 +3,31 @@
 /*--------------------------------------------------------------
 # Base
 --------------------------------------------------------------*/
-@import "sass/base/base";
+//@import "sass/base/base";
 
 .wrap.ripple_wp {
     h1{
         text-align:center;
         color:$color__text-heading;
     }
-    h2{
-        text-align:center;
-    }
 
     button{
         color:$color__white;
     }
+
+    th{
+        padding:10px;
+    }
+
+    a{
+        &.button{
+            border-radius:8px;
+            background:#8c072c;
+            color:#fff;
+            text-transform:uppercase;
+            border:#8c072c;
+        }
+    }
     
 }
+

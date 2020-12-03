@@ -13,7 +13,7 @@ function ripple_wp_admin_styles(){
 add_action( 'init', 'ripple_wp_admin_styles' );
 
 function add_ripple_wp_admin_styles(){
-    //wp_enqueue_style('ripple_wp_admin_css');
+    wp_enqueue_style('ripple_wp_admin_css');
     wp_enqueue_style('jquery-ui-css');
     //wp_enqueue_script('ripple_wp_layout_install');
 }
@@ -29,16 +29,13 @@ add_action( 'admin_enqueue_scripts', 'add_ripple_wp_admin_styles' );
 add_action('admin_menu', 'ripple_wp_options_page');
 
 function ripple_wp_options_page(){
-    $page_title = 'Ripple WP Options';
-    $menu_title = 'Ripple WP Options';
+    $page_title = 'RippleWP';
+    $menu_title = 'RippleWP';
     $capability = 'manage_options';
     $slug = '/rp_options';
-    //$slug = '/chamber-dashboard-business-directory/options.php';
-    //$callback = array( $this, 'plugin_settings_page_content' );
     $callback = 'rp_theme_options_settings';
-    $icon = 'dashicons-admin-plugins';
     $position = 80;
-    add_theme_page( $page_title, $menu_title, $capability, $slug, $callback, $icon, $position );
+    add_theme_page( $page_title, $menu_title, $capability, $slug, $callback, $position );
 }
 
 function ripple_wp_child_themes() {
@@ -49,9 +46,27 @@ function rp_theme_options_settings(){
     
 ?>
     <div class="wrap ripple_wp">
-        <h1><?php echo __('Ripple WP Theme Options', 'ripple-wp'); ?></h1>
-        <h2><?php echo __('Download additional layouts for your theme!', 'ripple-wp') ?></h2>
+        <h1><?php echo __('Welcome to RippleWP', 'ripple-wp'); ?></h1>
+        <h2><?php echo __('RippleWP offers customized layouts that work with the block editor to help you build a professional website quickly and easily.', 'ripple-wp'); ?></h2>
+        <div class="theme_setup_instructions">
+            <p><?php echo __('Follow the steps below to get started.', 'ripple-wp'); ?></p>
+            <table>
+                <tr>
+                    <th>STEP #1:</th>
+                    <td><?php echo __('Install and activate recommended plugins', 'ripple-wp'); ?></td>
+                </tr>
+                <tr>
+                    <th>STEP #2:</th>
+                    <td><?php echo __('Enter your license keys', 'ripple-wp'); ?></td>
+                </tr>
+                <tr>
+                    <th>STEP #3:</th>
+                    <td><?php echo __('Import a demo layout (see Appearance menu) or get started customizing your site', 'ripple-wp'); ?></td>
+                </tr>
+            </table>
+        </div>
         <div class="layouts_grid_wrap">
+            <h2><?php echo __('Layout Options', 'ripple-wp'); ?></h2><br />
             <div class="layout">
                 <h3>Block Layouts</h3>
                 <p>Layout Description</p>
@@ -64,12 +79,17 @@ function rp_theme_options_settings(){
                 $theme_text_domain = $current_active_theme->get( 'TextDomain' );
                 $demo_content_install_url = self_admin_url() . 'themes.php?page=pt-one-click-demo-import';
                 if(function_exists('ripple_wp_bl_wp_version')){
+                    if(class_exists('OCDI_Plugin')){
+                    ?>
+                    <a id="layout_one" class="install_layout button" href="<?php echo $demo_content_install_url; ?>">Import Demo Data</a>
+                    <?php    
+                    }
                 ?>
-                    <a id="layout_one" class="install_layout" href="<?php echo $demo_content_install_url; ?>">Import Demo Content</a>
+                    <!--<a id="layout_one" class="install_layout button" href="<?php echo $demo_content_install_url; ?>">Need to install plugins</a>-->
                     <?php
                 }else{
                 ?>
-                <a class="get_layout_link" href="">Get Block Layouts for RippleWP</a>
+                <a class="get_layout_link button" href="">Get Block Layouts for RippleWP</a>
                 <?php                    
                 }
                 ?>

@@ -259,22 +259,37 @@ header{
             background:none;
             ul{
                 justify-content:flex-end;
+                padding-top:5px;
                 li:last-item{
                     padding-right:0px;
+                }
+                li.focus{
+                    ul{
+                        display:block;
+                    }
                 }
                 
                 ul{
                     background:$color__white;
-                    display: block;
-                    text-align: left;
+                    display: none;
+                    text-align: none;
                     padding: 0px 10px;
+
+                    @media screen and (min-width:768px){
+                        text-align:left;
+                        display:block;
+                    }
                     &.sub-menu{
                         li a:after{
                             content:none;
                         }
                     }
                     &.sub-menu{
-                        width:200px;
+                        width: 400px;
+                        @media screen and (min-width:768px){
+                            width:200px;
+                        }
+                        
                         li{
                             ul{
                                 margin-left:130px;
@@ -317,6 +332,7 @@ aside{
 
 .site-branding{
     text-align:center;
+    padding-top:15px;
 }
 
 /*Search Styles*/ 
@@ -414,6 +430,10 @@ footer{
 
         ul{
             text-align:left;
+
+            li{
+                list-style-type: none;
+            }
         }
 
         .wp-calendar-nav-prev{
@@ -716,8 +736,40 @@ main.site-main, .archive.site-main{
             max-width: none;
         }
     }
+}
 
+/*Search Results Page*/
+.search, .search-results{
+    main{
+        article >*:not(.alignwide):not(.alignfull):not(.alignleft):not(.alignright):not(.is-style-wide), .navigation, #comments{
+            margin-left: auto;
+            margin-right: auto;
+            width: $content__width;
+            max-width: $max_content__width;
+        }
+        article{
+            margin-top:40px;
     
+            .alignwide {
+                max-width: $content__width--wide; 
+                margin:0 auto;
+            }
+        
+            .alignfull {
+                max-width: none;
+            }
+        }
+    }
+}
+
+/*404 page*/
+.error404{
+    section{
+        margin-left: auto;
+        margin-right: auto;
+        width: $content__width;
+        max-width: $max_content__width;
+    }
 }
 
 #footer_top{
@@ -759,12 +811,26 @@ button.menu-toggle{
     background:none;
     border:none;
     width:100%;
+    margin-top:10px;
 }
 
 
 .widget_search{
     text-align:center;
 }
+
+/*Theme Color Styles for Block Editor*/
+
+.has-theme-color-one-color{
+
+}
+
+.has-theme-color-two-color{
+
+}
+
+
+
 
 /** Adjusting for BD Styles*/
 

@@ -118,24 +118,25 @@ function ripple_wp_theme_options($wp_customize){
           ),
     ) );
 
-    $wp_customize->add_setting( 'theme_font_options' , array(
+    $wp_customize->add_setting( 'header_font_options' , array(
         'default'     => 'Open Sans',
         'transport'   => 'refresh',
         'sanitize_callback' => 'ripple_wp_sanitize_choices'
     ) );
 
-    $wp_customize->add_control( 'theme_font_options', array(
-        'label' => __('Theme Font Options', 'ripple-wp'),
+    $wp_customize->add_control( 'header_font_options', array(
+        'label' => __('Header Font Options', 'ripple-wp'),
         'section' => 'header_options',
-        'settings' => 'theme_font_options',
+        'settings' => 'header_font_options',
         'type' => 'select',
         'choices' => array(
             'Open Sans' => __( 'Open Sans' ),
-            'Cormorant Garamond' => __( 'Cormorant Garamond' ),
-            'Proza Libre'   => __('Proza Libre'),
-            'Rubik'     =>  __('Rubik'),
-            'Roboto'    =>  __('Roboto'),
-            'Montserrat'    =>  __('Montserrat'),
+            'Roboto' => __( 'Roboto' ),
+            'Slabo'   => __('Slabo'),
+            'Oswald'     =>  __('Oswald'),
+            'Cairo'    =>  __('Cairo'),
+            'BioRhyme'    =>  __('BioRhyme'),
+            'Rakkas'    =>  __('Rakkas')
           ),
     ) );
 }
@@ -160,19 +161,6 @@ function ripple_wp_theme_footer_options($wp_customize){
         'section' => 'footer_options',
         'settings' => 'show_copyright',
         'type' => 'text',
-    ) );
-
-    $wp_customize->add_setting( 'hide_theme_prop' , array(
-        'default'     => false,
-        'transport'   => 'refresh',
-        'sanitize_callback' => 'ripple_wp_sanitize_checkbox',
-    ) );
-
-    $wp_customize->add_control( 'hide_theme_prop', array(
-        'label' => 'Hide the theme info at the botoom of the site',
-        'section' => 'footer_options',
-        'settings' => 'hide_theme_prop',
-        'type' => 'checkbox',
     ) );
 }
 add_action( 'customize_register', 'ripple_wp_theme_footer_options' );
@@ -396,7 +384,7 @@ function ripple_wp_theme_get_customizer_css() {
     $header_bck_color = get_theme_mod('header_color');
     $menu_bck_color = get_theme_mod('menu_bck_color', '');
     $menu_text_color = get_theme_mod('menu_text_color');
-    $font_option = get_theme_mod('theme_font_options');
+    $font_option = get_theme_mod('header_font_options');
     //$remove_menu_bck_color = get_theme_mod('menu_bck_color');
     ?>
     <style type="text/css">
@@ -416,7 +404,7 @@ function ripple_wp_theme_get_customizer_css() {
         background: <?php echo $accent_color; ?>
     }
 
-    .main-navigation ul li.current-menu-item a, #top-menu li a{
+    .main-navigation ul li.current-menu-item a,.main-navigation ul li.current_page_ancestor a #top-menu li a{
         color: <?php echo $accent_color; ?>
     }
 
@@ -431,7 +419,7 @@ function ripple_wp_theme_get_customizer_css() {
     .main-navigation, .main-navigation ul li:hover > ul, .main-navigation ul li.focus > ul, .main-navigation ul ul{
         background: <?php echo $menu_bck_color; ?>
     }
-    .main-navigation ul li a{
+    .main-navigation ul li a, .main-navigation ul li.menu-item-object-page.current_page_item ul li a{
         color: <?php echo $menu_text_color; ?>
     }
 
@@ -439,13 +427,49 @@ function ripple_wp_theme_get_customizer_css() {
         
     }
 
-    body,
+    /*body,
     input,
     select,
     optgroup,
     textarea,
     p {
+        font-family: <?php //echo $font_option; ?>
+    }*/
+
+    h1, h2, h3, h4, h5, h6 {
         font-family: <?php echo $font_option; ?>
+    }
+
+    .has-text-color-background-color{
+        background-color: <?php echo $text_color; ?>
+    }
+
+    .has-text-color-color{
+        color: <?php echo $text_color; ?>
+    }
+
+    .has-accent-color-background-color{
+        background-color: <?php echo $accent_color; ?>
+    }
+
+    .has-accent-color-color{
+        color: <?php echo $accent_color; ?>
+    }
+
+    .has-theme-color-one-background-color{
+        background-color: <?php echo $top_bar_footer_color; ?>
+    }
+
+    .has-theme-color-one-color{
+        color: <?php echo $top_bar_footer_color; ?>
+    }
+
+    .has-theme-color-two-background-color{
+        background-color: <?php echo $header_bck_color; ?>
+    }
+
+    .has-theme-color-two-color{
+        color: <?php echo $header_bck_color; ?>
     }
 
     

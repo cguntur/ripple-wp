@@ -25,9 +25,20 @@
                 color:$color__menu_link;
             }
 
-            &.current-menu-item a{
-                color:$color__link;
+            &.current-menu-item, &.current_page_ancestor {
+                a{
+                    color:$color__link;
+                }
+                ul{
+                    li{
+                        a{
+                            color:$color__menu_link;
+                        }
+                    }
+                }
             }
+
+            
         }
 
 		ul {
@@ -123,7 +134,7 @@
     }
 
     ul{
-        left:auto;
+        //left:auto;
         position:relative;
         float:none;
 

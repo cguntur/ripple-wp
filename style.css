@@ -677,8 +677,12 @@ textarea {
 	color: #292b26;
 }
 
-.main-navigation ul li.current-menu-item a {
+.main-navigation ul li.current-menu-item a, .main-navigation ul li.current_page_ancestor a {
 	color: #d50943;
+}
+
+.main-navigation ul li.current-menu-item ul li a, .main-navigation ul li.current_page_ancestor ul li a {
+	color: #292b26;
 }
 
 .main-navigation ul ul {
@@ -740,7 +744,6 @@ textarea {
 
 .menu-toggle ul,
 .main-navigation.toggled ul ul {
-	left: auto;
 	position: relative;
 	float: none;
 }
@@ -878,7 +881,6 @@ ul#top-menu li a {
 /* Make sure logo link wraps around logo image. */
 .custom-logo-link {
 	display: inline-block;
-	padding-bottom: 15px;
 }
 
 /* Captions
@@ -1186,17 +1188,29 @@ header.entry-header h1 {
 
 .site-header .left_header .main-navigation ul {
 	justify-content: flex-end;
+	padding-top: 5px;
 }
 
 .site-header .left_header .main-navigation ul li:last-item {
 	padding-right: 0px;
 }
 
+.site-header .left_header .main-navigation ul li.focus ul {
+	display: block;
+}
+
 .site-header .left_header .main-navigation ul ul {
 	background: #fff;
-	display: block;
-	text-align: left;
+	display: none;
+	text-align: none;
 	padding: 0px 10px;
+}
+
+@media screen and (min-width: 768px) {
+	.site-header .left_header .main-navigation ul ul {
+		text-align: left;
+		display: block;
+	}
 }
 
 .site-header .left_header .main-navigation ul ul.sub-menu li a:after {
@@ -1204,7 +1218,13 @@ header.entry-header h1 {
 }
 
 .site-header .left_header .main-navigation ul ul.sub-menu {
-	width: 200px;
+	width: 400px;
+}
+
+@media screen and (min-width: 768px) {
+	.site-header .left_header .main-navigation ul ul.sub-menu {
+		width: 200px;
+	}
 }
 
 .site-header .left_header .main-navigation ul ul.sub-menu li ul {
@@ -1234,6 +1254,7 @@ aside h2.widget-title {
 
 .site-branding {
 	text-align: center;
+	padding-top: 15px;
 }
 
 /*Search Styles*/
@@ -1324,6 +1345,10 @@ footer .widget-column {
 
 footer .widget-column ul {
 	text-align: left;
+}
+
+footer .widget-column ul li {
+	list-style-type: none;
 }
 
 footer .widget-column .wp-calendar-nav-prev {
@@ -1610,6 +1635,35 @@ main.site-main article .entry-footer .cat-links, main.site-main article .entry-f
 	max-width: none;
 }
 
+/*Search Results Page*/
+.search main article > *:not(.alignwide):not(.alignfull):not(.alignleft):not(.alignright):not(.is-style-wide), .search main .navigation, .search main #comments, .search-results main article > *:not(.alignwide):not(.alignfull):not(.alignleft):not(.alignright):not(.is-style-wide), .search-results main .navigation, .search-results main #comments {
+	margin-left: auto;
+	margin-right: auto;
+	width: 90%;
+	max-width: 750px;
+}
+
+.search main article, .search-results main article {
+	margin-top: 40px;
+}
+
+.search main article .alignwide, .search-results main article .alignwide {
+	max-width: 90%;
+	margin: 0 auto;
+}
+
+.search main article .alignfull, .search-results main article .alignfull {
+	max-width: none;
+}
+
+/*404 page*/
+.error404 section {
+	margin-left: auto;
+	margin-right: auto;
+	width: 90%;
+	max-width: 750px;
+}
+
 #footer_top {
 	width: 90%;
 	max-width: 750px;
@@ -1643,12 +1697,14 @@ button.menu-toggle {
 	background: none;
 	border: none;
 	width: 100%;
+	margin-top: 10px;
 }
 
 .widget_search {
 	text-align: center;
 }
 
+/*Theme Color Styles for Block Editor*/
 /** Adjusting for BD Styles*/
 #businesslist .business .email a, #businesslist .business .categories {
 	overflow-wrap: break-word;
