@@ -20,6 +20,55 @@
         li{
             padding:15px;
 
+            &.menu-item-has-children:after{
+                /*background-image: url('images/arrow_down.png');*/
+                position: absolute;
+                font-family: 'FontAwesome';
+                top: 25%;
+                /*margin-top:12px;*/
+                /*margin-left:5px;*/
+                right:2%;
+                content: "\f107";
+                color:$color__menu_link;
+
+                @media screen and (min-width:768px){
+                    /*margin-top:15px;*/
+                    top: 25%;
+                }
+            }
+
+            &.menu-item-has-children:hover:after{
+                position: absolute;
+                font-family: 'FontAwesome';
+                top: 25%;
+                /*margin-top:12px;*/
+                margin-left:5px;
+                content: "\f106";
+                color:$color__link;
+            }
+
+            &.menu-item-has-children.focus:after{
+                position: absolute;
+                font-family: 'FontAwesome';
+                top: 25%;
+                /*margin-top:12px;*/
+                margin-left:5px;
+                content: "\f106";
+                color:$color__link;
+            }
+
+            &.menu-item-has-children{
+                ul{
+                    &.sub-menu{
+                        li{
+                            &.menu-item-has-children:after{
+                                content:none;
+                            }
+                        }
+                    }
+                }
+            }
+
             a{
                 font-size:18px;
                 color:$color__menu_link;
@@ -61,7 +110,7 @@
 
 			ul {
 				//left: -999em;
-				left:10%;
+				left:2%;
                 position:relative;
 				//top: 0;
 			}
@@ -72,7 +121,7 @@
 
 				&:hover > ul,
 				&.focus > ul {
-					left:10%;		 
+					left:2%;		 
 					//display: block;
 					//left: auto;
 				}
@@ -131,15 +180,35 @@
 
     li{
         padding:10px;
+
+        &.menu-item-has-children:after{
+            right:2%;
+        }
+
+        a{
+            padding-right:3%;
+        }
+
+        &.focus > a{
+            color: $color__link;
+        }
+
+        &:hover > ul, &.focus > ul{
+            left:auto;
+            right:2%;
+            border:#000 thin solid;
+        }
+        
     }
 
     ul{
         //left:auto;
-        position:relative;
+        /*position:absolute;*/
         float:none;
 
         a{
             width:auto;
+            min-width:100px;
         }
 
         ul{

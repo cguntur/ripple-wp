@@ -41,21 +41,22 @@
 			<?php }	?>
 		</div>
 		<div class="site-info">
-            <?php $copyright_message = get_theme_mod('show_copyright'); ?>
+            <?php 
+                $copyright_message = get_theme_mod('show_copyright', '&copy; 2020 ' . get_bloginfo('name')); ?>
                 <span class="copyright"><?php echo $copyright_message; ?></span>
                 <?php if(!get_theme_mod('hide_theme_prop')){
                 ?>
                 <span class="wp_prop"><a href="<?php echo esc_url( __( 'https://wordpress.org/', 'ripple-wp' ) ); ?>">
 				<?php
 				/* translators: %s: CMS name, i.e. WordPress. */
-				printf( esc_html__( 'Proudly powered by %s', 'ripple-wp' ), 'WordPress' );
+				printf( esc_html__( '%s', 'ripple-wp' ), 'WordPress' );
 				?>
 			</a></span>
-            <span class="sep"> | </span>
+            <!--<span class="sep"> | </span>-->
             <span class="theme_author_prop">
 				<?php
 				/* translators: 1: Theme name, 2: Theme author. */
-				printf( esc_html__( 'Theme: %1$s by %2$s.', 'ripple-wp' ), 'RippleWP', '<a href="https://www.chamberdashboard.com">Ripple Creative Solutions</a>' );
+				printf( esc_html__( 'Theme: %1$s by %2$s', 'ripple-wp' ), 'RippleWP', '<a href="https://www.chamberdashboard.com">Ripple Creative Solutions</a>' );
                 ?>
                 </span>
                 <?php

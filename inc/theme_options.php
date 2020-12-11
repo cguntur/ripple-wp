@@ -37,39 +37,55 @@ function ripple_wp_options_page(){
     $position = 80;
     add_theme_page( $page_title, $menu_title, $capability, $slug, $callback, $position );
 }
-
-function ripple_wp_child_themes() {
-	do_action('ripple_wp_child_themes');
-}
-
 function rp_theme_options_settings(){
     
 ?>
     <div class="wrap ripple_wp">
         <h1><?php echo __('Welcome to RippleWP', 'ripple-wp'); ?></h1>
-        <h2><?php echo __('RippleWP offers customized layouts that work with the block editor to help you build a professional website quickly and easily.', 'ripple-wp'); ?></h2>
-        <div class="theme_setup_instructions">
-            <p><?php echo __('Follow the steps below to get started.', 'ripple-wp'); ?></p>
-            <table>
-                <tr>
-                    <th>STEP #1:</th>
-                    <td><?php echo __('Install and activate recommended plugins', 'ripple-wp'); ?></td>
-                </tr>
-                <tr>
-                    <th>STEP #2:</th>
-                    <td><?php echo __('Enter your license keys', 'ripple-wp'); ?></td>
-                </tr>
-                <tr>
-                    <th>STEP #3:</th>
-                    <td><?php echo __('Import a demo layout (see Appearance menu) or get started customizing your site', 'ripple-wp'); ?></td>
-                </tr>
-            </table>
-        </div>
+        <div class="options_page_grid">
+            <div class="column left">
+                <?php ripple_wp_theme_options_tabs(); ?>
+            </div><!--left_col-->
+            <div class="column right">
+                <div class="_form_8"></div><script src="https://chamberdashboard.activehosted.com/f/embed.php?id=8" type="text/javascript" charset="utf-8"></script>
+            </div><!--right_col-->
+        </div><!--options_page_grid-->
+        
+    </div><!--wrap ripple_wp-->
+<?php
+}
+function ripple_wp_tabs_content($riple_wp_active_tab){
+    global $riple_wp_active_tab;
+
+    switch($riple_wp_active_tab){
+
+        case 'rp_theme_welcome':
+            ripple_wp_welcome();
+            ripple_wp_theme_demo_content();
+        break;
+
+        case 'rp_theme_info':
+        ripple_wp_theme_info();
+        break;
+
+        case 'rp_license':
+        //cdash_export_form();
+		ripple_wp_license();
+        break;
+
+		case 'rp_changelog':
+		ripple_wp_changelog();
+		break;
+    }
+}
+
+function ripple_wp_theme_demo_content(){
+?> 
+    <div class="layouts">
         <div class="layouts_grid_wrap">
             <h2><?php echo __('Layout Options', 'ripple-wp'); ?></h2><br />
             <div class="layout">
-                <h3>Block Layouts</h3>
-                <p>Layout Description</p>
+                <h3><?php echo __('Block Layouts', 'ripple-wp'); ?></h3>
                 <?php 
                 $image_url = get_template_directory_uri() . '/images/restaurant_guide.png';
                 ?>
@@ -84,74 +100,120 @@ function rp_theme_options_settings(){
                     <a id="layout_one" class="install_layout button" href="<?php echo $demo_content_install_url; ?>">Import Demo Data</a>
                     <?php    
                     }
-                ?>
-                    <!--<a id="layout_one" class="install_layout button" href="<?php echo $demo_content_install_url; ?>">Need to install plugins</a>-->
-                    <?php
                 }else{
                 ?>
-                <a class="get_layout_link button" href="">Get Block Layouts for RippleWP</a>
+                <a class="install_layout button" href="">Get Block Layouts for RippleWP</a>
                 <?php                    
                 }
                 ?>
-            </div>
+            </div><!--end of layout-->
+        </div><!--end of layouts_grid_wrap-->
+    </div>
+<?php   
+}
+
+function ripple_wp_theme_options_tabs(){
+?>
+    <div class="settings_tabs">
+        <?php 
+        global $riple_wp_active_tab;
+        $riple_wp_active_tab = isset( $_GET['tab'] ) ? sanitize_text_field($_GET['tab']) : 'rp_theme_welcome'; ?>
+        <h2 class="nav-tab-wrapper">
+            <a class="nav-tab <?php echo $riple_wp_active_tab == 'rp_theme_welcome' ? 'nav-tab-active' : ''; ?>" href="<?php echo admin_url( 'admin.php?page=rp_options&tab=rp_theme_welcome' ); ?>"><?php _e( 'RippleWP', 'cdash' ); ?> </a>
+            <a class="nav-tab <?php echo $riple_wp_active_tab == 'rp_theme_info' ? 'nav-tab-active' : ''; ?>" href="<?php echo admin_url( 'admin.php?page=rp_options&tab=rp_theme_info' ); ?>"><?php _e( 'Get Help', 'cdash' ); ?> </a>        
+            <a class="nav-tab <?php echo $riple_wp_active_tab == 'rp_license' ? 'nav-tab-active' : ''; ?>" href="<?php echo admin_url( 'admin.php?page=rp_options&tab=rp_license' ); ?>"><?php _e( 'License', 'cdash' ); ?> </a>
+            <a class="nav-tab <?php echo $riple_wp_active_tab == 'rp_changelog' ? 'nav-tab-active' : ''; ?>" href="<?php echo admin_url( 'admin.php?page=rp_options&tab=rp_changelog' ); ?>"><?php _e( 'Changelog', 'cdash' ); ?> </a>        
+        </h2>
+        <div class="wrap">
+            <?php ripple_wp_tabs_content($riple_wp_active_tab); ?>
         </div>
     </div>
+<?php    
+}
+
+function ripple_wp_welcome(){
+?>
+    <h2><?php echo __('RippleWP offers customized layouts that work with the block editor to help you build a professional website quickly and easily.', 'ripple-wp'); ?></h2>
+
+    <div class="theme_setup_instructions">
+        <h3><?php echo __('Follow the steps below to get started.', 'ripple-wp'); ?></h3>
+        <table class="ripple_wp_layout_steps">
+            <tr>
+                <th>STEP #1:</th>
+                <td><?php echo __('Install & activate <a href="https://chamberdashboard.com/downloads/ripplewp-theme-package1/" target="_blank">Block Layout plugin</a>', 'ripple-wp'); ?></td>
+            </tr>
+            <tr>
+                <th>STEP #2:</th>
+                <td><?php echo __('Install and activate required plugins', 'ripple-wp'); ?></td>
+            </tr>
+            <tr>
+                <th>STEP #3:</th>
+                <td><?php echo __('Enter your <a href="'. self_admin_url() .'admin.php?page=rp_options&tab=rp_license">license keys</a>', 'ripple-wp'); ?></td>
+            </tr>
+            <tr>
+                <th>STEP #4:</th>
+                <td><?php echo __('Import a demo layout (see Appearance menu) or get started customizing your site', 'ripple-wp'); ?></td>
+            </tr>
+        </table>
+    </div><!--theme_setup_instructions-->
 <?php
-//ripple_wp_child_themes();
-}
-function ripple_wp_layout_install(){
-    if(isset($_POST['layout_option'])){
-        $layout_option = $_POST['layout_option'];
-    }
-
-    $response = '';
-    //$response = "Layout Option:" . $layout_option;
-    $response .= ripple_wp_theme_license();
-    $response .= ripple_wp_recommended_plugins($layout_option);
-    //$response .= ripple_wp_parse_xml();
-
-    die($response);
-    
-}
-// creating Ajax call for WordPress
-add_action('wp_ajax_ripple_wp_layout_install','ripple_wp_layout_install' );
-
-function ripple_wp_theme_license(){
-    if(!isset($response)){
-        $response = '';
-    }
-    $response = "EDD License Key<br />";
-    return $response;
 }
 
-function ripple_wp_recommended_plugins($layout){
-    if(!isset($response)){
-        $response = '';
-    }
-
-    if($layout == "layout_one"){
-        $response = "Recommended Plugins<br />";
-    }else{
-        $response = "No recommended plugins";
-    }
-    return $response;
+function ripple_wp_theme_info(){
+    ?>
+    <div class="ripple_wp_tab_content">
+        <h3><?php echo __('Theme Customizer', 'ripple_wp'); ?></h3>
+        <p><?php echo __('All the theme options are available via the Theme Customizer.', 'ripple_wp'); ?></p>
+        <a class=" button primary" href-"">Customize My Theme</a>
+        <br />
+        <h3><?php echo __('Documentation', 'ripple_wp'); ?></h3>
+        <p><?php echo __('Please refer to the theme documentation for step-by-step instructions.', 'ripple_wp'); ?></p>
+        <a class=" button primary" href-"">Theme Documentation</a>
+        <br />
+        <h3><?php echo __('Get Support', 'ripple_wp'); ?></h3>
+        <p><?php echo __('Visit our documentation library or submit your question to our support team.', 'ripple_wp'); ?></p>
+        <a class=" button primary" href-"">Customer Support</a>
+    </div>
+    <?php
 }
 
-function ripple_wp_parse_xml(){
-    $filename = '/starter_content/events_calendar_content.xml';   
-    $xml=simplexml_load_file($filename);
-    print_r($xml);
-    // load xml file
-    //$xml      = simplexml_load_string( $filename );
-    // seesaw ;-)
-    //$json     = json_encode( $xml );
-    //$options  = json_decode( $json, TRUE );
-    // see result
-    //var_dump( $options );
-    //return $options;
-
-    // update in WordPress
-    //update_option( 'my_settings_id', $options );
+function ripple_wp_license(){
+    ?>
+    <div class="ripple_wp_tab_content">
+        <?php 
+            if(is_plugin_active( 'ripple-wp-block-layouts/ripple-wp-block-layouts.php' )){
+                ripple_bl_render_license_key_form(); 
+            }else{
+                echo __('There are no RippleWP addons installed and activated on your site. Visit the site(link on our site) to learn more about our plugins', 'ripple-wp');
+            }
+        ?>
+    </div>
+    <?php
 }
 
+function ripple_wp_changelog(){
+    ?>
+    <div class="changelog_wrapper">
+        <div class="ripple_wp_changelog">
+            <h3><?php echo __('Changelog', 'ripple-wp'); ?></h3>
+            <h4><?php echo __('1.0 - Dec 2020', 'ripple-wp'); ?> </h4>
+            <p><?php echo __('Initial release', 'ripple-wp'); ?></p>
+        </div>
+        <div class="ripple_wp_tech_details">
+                <?php
+                    global $wp_version;
+                    $php_version = phpversion();
+                ?>
+                <h4><?php echo __('Current WP Version: ', 'ripple-wp'); ?></b> <?php echo $wp_version; ?></h4>
+                <h4><?php echo __('Current PHP Version:', 'ripple-wp'); ?></b> <?php echo $php_version;  ?></h4>
+            <?php
+                $theme = wp_get_theme();
+                ?>
+                <h4><?php echo __('Active Theme: ', 'ripple-wp') . $theme . " " . $theme->get( 'Version' ); ?></h4>
+                <?php
+            ?>
+        </div>
+    </div>
+    <?php
+}
 ?>

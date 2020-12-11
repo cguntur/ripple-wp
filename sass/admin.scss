@@ -9,18 +9,32 @@
     h1{
         text-align:center;
         color:$color__text-heading;
+        font-size:3em;
+    }
+
+    h2{
+        font-size:1.7em;
+        line-height:1.3em;
+    }
+
+    h3{
+        font-size:1.5em;
     }
 
     button{
         color:$color__white;
     }
 
+    tr{
+        font-size:1.4em;
+    }
+
     th{
-        padding:10px;
+        padding:13px;
     }
 
     a{
-        &.button{
+        &.button.install_layout{
             border-radius:8px;
             background:#8c072c;
             color:#fff;
@@ -29,5 +43,40 @@
         }
     }
     
+}
+
+.options_page_grid{
+    display:flex;
+    flex-direction:column;
+    
+    @media screen and (min-width:768px){
+        flex-direction: row;
+    }
+
+    .column{
+        flex-grow:1;
+        padding:15px;
+
+        &.left{
+            flex-basis: 80%;
+        }
+    }
+
+    .changelog_wrapper{
+        display:flex;
+        flex-direction: column;
+
+        @media screen and (min-width:500px){
+            flex-direction: row;
+        }
+
+        .ripple_wp_changelog{
+            flex-basis:50%;
+        }
+    }
+}
+
+.settings_tabs{
+    margin-top:30px;
 }
 

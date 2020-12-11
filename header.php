@@ -26,7 +26,6 @@
     <a class="skip-link screen-reader-text" href="#primary"><?php esc_html_e( 'Skip to content', 'ripple-wp' ); ?></a>
     <?php
         if(ripple_wp_is_left_logo()){
-            //wp_ripple_topbar();
             get_template_part('template-parts/header-logo-left');
         }else{
 

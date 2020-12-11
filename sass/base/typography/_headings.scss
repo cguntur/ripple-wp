@@ -13,7 +13,15 @@ h1{
     font-weight:400;
 
     &.site-title{
-        font-size:45px;
+        font-size:30px;
+
+        @media screen and (min-width:768px){
+            font-size:35px;
+        }
+
+        @media screen and (min-width:992px){
+            font-size:45px;
+        }
     }
 
     a{

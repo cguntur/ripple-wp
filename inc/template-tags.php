@@ -60,7 +60,7 @@ if ( ! function_exists( 'ripple_wp_entry_footer' ) ) :
 		// Hide category and tag text for pages.
 		if ( 'post' === get_post_type() ) {
             /* translators: used between list items, there is a space after the comma */
-            if(get_theme_mod('blog_content_categories')){
+            if ( true == get_theme_mod( 'blog_content_categories', true ) ){
                 $categories_list = get_the_category_list( esc_html__( ', ', 'ripple-wp' ) );
                 if ( $categories_list ) {
                     /* translators: 1: list of categories. */
@@ -69,7 +69,7 @@ if ( ! function_exists( 'ripple_wp_entry_footer' ) ) :
                 }
             }
 			
-            if(get_theme_mod('blog_content_tags')){
+            if ( true == get_theme_mod( 'blog_content_tags', true ) ){
                 /* translators: used between list items, there is a space after the comma */
                 $tags_list = get_the_tag_list( '', esc_html_x( ', ', 'list item separator', 'ripple-wp' ) );
                 if ( $tags_list ) {

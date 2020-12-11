@@ -42,6 +42,63 @@ function ripple_wp_customize_register( $wp_customize ) {
 }
 add_action( 'customize_register', 'ripple_wp_customize_register' );
 
+// Documentation Panel
+function ripple_wp_docs_help_register( $wp_customize ) {
+    class RIPPLE_WP_Important_Links extends WP_Customize_Control {
+
+        public $type = "ripple-wp-important-links";
+    
+        public function render_content() {
+        // Add Theme instruction, Support Forum, Demo Link, Rating Link
+            $important_links = array(
+                'welcome' => array(
+                    'link' => esc_url('themes.php?page=rp_options'),
+                    'text' => __('Install a Demo Layout', 'ripple_wp'),
+                    'target'	=> __(''),
+                ),
+                'demo-docs' => array(
+                    'link' => esc_url('https://chamberdashboard.com/docs/wordpress-themes/'),
+                    'text' => __('Customize Demo Layouts', 'ripple_wp'),
+                    'target'	=> __('_blank'),
+                ),
+                'documentation' => array(
+                    'link' => esc_url('https://chamberdashboard.com/docs/wordpress-themes/ripplewp/'),
+                    'text' => __('RippleWP Documentation', 'ripple_wp'),
+                    'target'	=> __('blank'),
+                ),
+                'support' => array(
+                    'link' => esc_url('https://chamberdashboard.com/my-account/'),
+                    'text' => __('Get Support', 'ripple_wp'),
+                    'target'	=> __('blank'),
+                ),
+            );
+            foreach ($important_links as $important_link) {
+                echo '<p><a target="' . $important_link['target'] . '" href="' . $important_link['link'] . '" >' . esc_attr($important_link['text']) . ' </a></p>';
+            } ?>
+            <?php }
+    }
+    
+    $wp_customize->add_section(
+        'documentation',
+            array(
+                'title' 		=> __('How to Use RippleWP', 'chamber-inspired'),
+                'description'	=> __( 'Important links to documentation and support for the RippleWP theme.', 'ripple_wp' ),
+                'priority' 		=> 1,
+            )
+    );
+    
+    $wp_customize->add_setting('ripple_wp[ripple-wp-important-links]', array(
+        'capability'	=> 'edit_theme_options',
+        'type'			=> 'option',
+    ));
+    
+    $wp_customize->add_control(new RIPPLE_WP_Important_Links($wp_customize, 'important_links', array(
+        'label' 	=> __('Instructions for getting started with your new theme and how to get support.', 'ripple_wp'),
+        'section' 	=> 'documentation',
+        'settings'	=> 'ripple_wp[ripple-wp-important-links]'
+    )));
+}
+add_action( 'customize_register', 'ripple_wp_docs_help_register' );
 
 /**Ripple WP Theme Header Options */
 
@@ -94,11 +151,6 @@ function ripple_wp_theme_options($wp_customize){
         'settings' => 'show_topbar',
         'type' => 'checkbox',
     ) );
-
-    /*$wp_customize->selective_refresh->add_partial( 'show_topbar', array(
-        'selector' => '.topbar',
-        'render_callback' => 'wp_ripple_topbar',
-    ) );*/
 
     $wp_customize->add_setting( 'add_search_icon' , array(
         'default'     => 'top_bar',
@@ -392,7 +444,7 @@ function ripple_wp_theme_get_customizer_css() {
         color: <?php echo $text_color; ?>
     }
 
-    a, a:visited, a:hover, a:focus, a:active{
+    p a, p a:visited, p a:hover, p a:focus, p a:active, span a, span a:visited, span a:hover, span a:focus, span a:active, #primary-menu li a:hover, #primary-menu li a:focus, #primary-menu li a:active, #primary-menu ul li.current-menu-item a, #primary-menu li.menu-item-has-children:hover:after, #primary-menu li.menu-item-has-children.focus:after, .has-accent-color-color, .topbar ul#top-menu li a, .main-navigation.toggled ul li.focus > a{
         color: <?php echo $accent_color; ?>;
     }
 
@@ -419,12 +471,8 @@ function ripple_wp_theme_get_customizer_css() {
     .main-navigation, .main-navigation ul li:hover > ul, .main-navigation ul li.focus > ul, .main-navigation ul ul{
         background: <?php echo $menu_bck_color; ?>
     }
-    .main-navigation ul li a, .main-navigation ul li.menu-item-object-page.current_page_item ul li a{
+    .main-navigation ul li a, .main-navigation ul li.menu-item-object-page.current_page_item ul li a, .main-navigation ul li.menu-item-has-children:after{
         color: <?php echo $menu_text_color; ?>
-    }
-
-    ul#top-menu li a{
-        
     }
 
     /*body,

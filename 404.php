@@ -23,10 +23,10 @@ get_header();
 					<?php
 					get_search_form();
 
-					the_widget( 'WP_Widget_Recent_Posts' );
+					//the_widget( 'WP_Widget_Recent_Posts' );
 					?>
 
-					<div class="widget widget_categories">
+					<!--<div class="widget widget_categories">
 						<h2 class="widget-title"><?php esc_html_e( 'Most Used Categories', 'ripple-wp' ); ?></h2>
 						<ul>
 							<?php
@@ -41,14 +41,14 @@ get_header();
 							);
 							?>
 						</ul>
-					</div><!-- .widget -->
+					</div>--><!-- .widget -->
 
 					<?php
 					/* translators: %1$s: smiley */
-					$ripple_wp_archive_content = '<p>' . sprintf( esc_html__( 'Try looking in the monthly archives. %1$s', 'ripple-wp' ), convert_smilies( ':)' ) ) . '</p>';
-					the_widget( 'WP_Widget_Archives', 'dropdown=1', "after_title=</h2>$ripple_wp_archive_content" );
+					//$ripple_wp_archive_content = '<p>' . sprintf( esc_html__( 'Try looking in the monthly archives. %1$s', 'ripple-wp' ), convert_smilies( ':)' ) ) . '</p>';
+					//the_widget( 'WP_Widget_Archives', 'dropdown=1', "after_title=</h2>$ripple_wp_archive_content" );
 
-					the_widget( 'WP_Widget_Tag_Cloud' );
+					//the_widget( 'WP_Widget_Tag_Cloud' );
 					?>
 
 			</div><!-- .page-content -->

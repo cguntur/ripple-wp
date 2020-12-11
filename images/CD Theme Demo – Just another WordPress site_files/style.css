@@ -408,19 +408,7 @@ h1 {
 }
 
 h1.site-title {
-	font-size: 30px;
-}
-
-@media screen and (min-width: 768px) {
-	h1.site-title {
-		font-size: 35px;
-	}
-}
-
-@media screen and (min-width: 992px) {
-	h1.site-title {
-		font-size: 45px;
-	}
+	font-size: 45px;
 }
 
 h1 a {
@@ -699,32 +687,26 @@ textarea {
 @media screen and (min-width: 768px) {
 	.main-navigation ul li.menu-item-has-children:after {
 		/*margin-top:15px;*/
-		top: 25%;
+		top: 30%;
 	}
 }
 
 .main-navigation ul li.menu-item-has-children:hover:after {
 	position: absolute;
 	font-family: 'FontAwesome';
-	top: 25%;
+	top: 30%;
 	/*margin-top:12px;*/
 	margin-left: 5px;
 	content: "\f106";
-	color: #d50943;
 }
 
 .main-navigation ul li.menu-item-has-children.focus:after {
 	position: absolute;
 	font-family: 'FontAwesome';
-	top: 25%;
+	top: 5%;
 	/*margin-top:12px;*/
 	margin-left: 5px;
 	content: "\f106";
-	color: #d50943;
-}
-
-.main-navigation ul li.menu-item-has-children ul.sub-menu li.menu-item-has-children:after {
-	content: none;
 }
 
 .main-navigation ul li a {
@@ -755,13 +737,13 @@ textarea {
 }
 
 .main-navigation ul ul ul {
-	left: 2%;
+	left: 10%;
 	position: relative;
 }
 
 .main-navigation ul ul li:hover > ul,
 .main-navigation ul ul li.focus > ul {
-	left: 2%;
+	left: 10%;
 }
 
 .main-navigation ul ul a {
@@ -797,39 +779,15 @@ textarea {
 	padding: 10px;
 }
 
-.menu-toggle li.menu-item-has-children:after,
-.main-navigation.toggled ul li.menu-item-has-children:after {
-	right: 2%;
-}
-
-.menu-toggle li a,
-.main-navigation.toggled ul li a {
-	padding-right: 3%;
-}
-
-.menu-toggle li.focus > a,
-.main-navigation.toggled ul li.focus > a {
-	color: #d50943;
-}
-
-.menu-toggle li:hover > ul, .menu-toggle li.focus > ul,
-.main-navigation.toggled ul li:hover > ul,
-.main-navigation.toggled ul li.focus > ul {
-	left: auto;
-	right: 2%;
-	border: #000 thin solid;
-}
-
 .menu-toggle ul,
 .main-navigation.toggled ul ul {
-	/*position:absolute;*/
+	position: relative;
 	float: none;
 }
 
 .menu-toggle ul a,
 .main-navigation.toggled ul ul a {
 	width: auto;
-	min-width: 100px;
 }
 
 .menu-toggle ul ul,
@@ -1290,7 +1248,7 @@ header.entry-header h1 {
 	background: #fff;
 	display: none;
 	text-align: none;
-	/*padding: 10px 20px 0px 10px;*/
+	padding: 10px 20px 0px 10px;
 }
 
 @media screen and (min-width: 768px) {
@@ -1315,19 +1273,7 @@ header.entry-header h1 {
 }
 
 .site-header .left_header .main-navigation ul ul.sub-menu li ul {
-	/*margin-left:130px;*/
-}
-
-.site-header .left_header .main-navigation.toggled {
-	border: #000 thin solid;
-	position: absolute;
-	background: #fff;
-	margin: 0px;
-	left: 0;
-}
-
-.site-header .left_header .main-navigation.toggled ul ul.sub-menu li ul {
-	margin-left: 0px;
+	margin-left: 130px;
 }
 
 .site-header .left_header .logo_menu_wrapper .wrapper {
@@ -1408,7 +1354,7 @@ aside h2.widget-title {
 
 /** Footer Styles*/
 footer.site-footer {
-	/*margin-top: 100px;*/
+	margin-top: 100px;
 	background: #5fd3e2;
 }
 
@@ -1475,12 +1421,13 @@ main {
 	flex: 1;
 }
 
-/*.page .entry-content .alignfull .wp-block-group.alignwide, .page .entry-content .alignfull> {
-    width: $content__width;
-    max-width: $content__width--max-large-screen;
-    margin-left: auto;
-    margin-right: auto;
-}*/
+.page .entry-content .alignfull .wp-block-group.alignwide, .page .entry-content .alignfull > * {
+	width: 90%;
+	max-width: 1200px;
+	margin-left: auto;
+	margin-right: auto;
+}
+
 .page.page-template-page-fullwidth .entry-content > *:not(.alignwide):not(.alignfull):not(.alignleft):not(.alignright):not(.is-style-wide), .page.page-template-page-fullwidth footer.entry-footer > *:not(.alignwide):not(.alignfull):not(.alignleft):not(.alignright):not(.is-style-wide) {
 	max-width: none;
 }

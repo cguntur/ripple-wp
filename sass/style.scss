@@ -257,6 +257,12 @@ header{
 
         .main-navigation{
             background:none;
+            @media screen and (min-width: 768px){
+                display: flex;
+                align-items: center;
+                justify-content: flex-end;
+            }
+            
             ul{
                 justify-content:flex-end;
                 padding-top:5px;
@@ -273,7 +279,7 @@ header{
                     background:$color__white;
                     display: none;
                     text-align: none;
-                    padding: 0px 10px;
+                    /*padding: 10px 20px 0px 10px;*/
 
                     @media screen and (min-width:768px){
                         text-align:left;
@@ -285,19 +291,39 @@ header{
                         }
                     }
                     &.sub-menu{
-                        width: 400px;
+                        /*width: 400px;*/
                         @media screen and (min-width:768px){
-                            width:200px;
+                            /*width:200px;*/
                         }
                         
                         li{
                             ul{
-                                margin-left:130px;
+                                /*margin-left:130px;*/
                             }
                         }
                     }
                     
                 }
+            }
+
+            &.toggled{
+                border: #000 thin solid;
+                position: absolute;
+                background: #fff;
+                margin: 0px;
+                left: 0;
+
+                ul{
+                    ul{
+                        &.sub-menu{
+                           li{
+                               ul{
+                                    margin-left:0px;
+                               }
+                           } 
+                        } 
+                    }
+                } 
             }
         }
         .logo_menu_wrapper{
@@ -391,7 +417,7 @@ aside{
 
 footer{
     &.site-footer{
-        margin-top: 100px;
+        /*margin-top: 100px;*/
         background: $color__background-header;
     }
 
@@ -468,12 +494,12 @@ main{
     flex:1;
 }
 
-.page .entry-content .alignfull .wp-block-group.alignwide, .page .entry-content .alignfull>* {
+/*.page .entry-content .alignfull .wp-block-group.alignwide, .page .entry-content .alignfull> {
     width: $content__width;
     max-width: $content__width--max-large-screen;
     margin-left: auto;
     margin-right: auto;
-}
+}*/
 .page{
     &.page-template-page-fullwidth{
         .entry-content> *:not(.alignwide):not(.alignfull):not(.alignleft):not(.alignright):not(.is-style-wide), footer.entry-footer> *:not(.alignwide):not(.alignfull):not(.alignleft):not(.alignright):not(.is-style-wide) {
@@ -763,12 +789,18 @@ main.site-main, .archive.site-main{
 }
 
 /*404 page*/
-.error404{
+.error404, .search-no-results{
     section{
         margin-left: auto;
         margin-right: auto;
         width: $content__width;
         max-width: $max_content__width;
+    }
+
+    .page-content{
+        .search-form input[type="search"]{
+            width:80%;
+        }
     }
 }
 

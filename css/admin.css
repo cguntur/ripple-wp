@@ -4,17 +4,51 @@
 --------------------------------------------------------------*/
 .wrap.ripple_wp h1 {
   text-align: center;
-  color: #d50943; }
+  color: #d50943;
+  font-size: 3em; }
+
+.wrap.ripple_wp h2 {
+  font-size: 1.7em;
+  line-height: 1.3em; }
+
+.wrap.ripple_wp h3 {
+  font-size: 1.5em; }
 
 .wrap.ripple_wp button {
   color: #fff; }
 
-.wrap.ripple_wp th {
-  padding: 10px; }
+.wrap.ripple_wp tr {
+  font-size: 1.4em; }
 
-.wrap.ripple_wp a.button {
+.wrap.ripple_wp th {
+  padding: 13px; }
+
+.wrap.ripple_wp a.button.install_layout {
   border-radius: 8px;
   background: #8c072c;
   color: #fff;
   text-transform: uppercase;
   border: #8c072c; }
+
+.options_page_grid {
+  display: flex;
+  flex-direction: column; }
+  @media screen and (min-width: 768px) {
+    .options_page_grid {
+      flex-direction: row; } }
+  .options_page_grid .column {
+    flex-grow: 1;
+    padding: 15px; }
+    .options_page_grid .column.left {
+      flex-basis: 80%; }
+  .options_page_grid .changelog_wrapper {
+    display: flex;
+    flex-direction: column; }
+    @media screen and (min-width: 500px) {
+      .options_page_grid .changelog_wrapper {
+        flex-direction: row; } }
+    .options_page_grid .changelog_wrapper .ripple_wp_changelog {
+      flex-basis: 50%; }
+
+.settings_tabs {
+  margin-top: 30px; }

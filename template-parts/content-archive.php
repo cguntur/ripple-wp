@@ -27,7 +27,7 @@
 			<div class="entry-meta">
 				<?php
                 ripple_wp_posted_on();
-                if(get_theme_mod('blog_content_author')){
+                if ( true == get_theme_mod( 'blog_content_author', true ) ){
                     ripple_wp_posted_by();
                 }
 				

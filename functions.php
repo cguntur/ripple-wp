@@ -384,7 +384,7 @@ require get_template_directory() . '/inc/theme_options.php';
 /**Top Menu */
 function wp_ripple_topbar() {
     $class = wp_ripple_search_class();
-    if( get_theme_mod( 'show_topbar') == true ){
+    if ( true == get_theme_mod( 'show_topbar', true ) ){
     ?>
         <div class="topbar <?php echo $class; ?>">    
             <div class="wrapper align-right">
@@ -588,7 +588,7 @@ function ripple_wp_display_install_notice() {
         /* Check that the user hasn't already clicked to ignore the message */
 	if ( ! get_user_meta($user_id, 'ripple_wp_admin_notice_ignore') ) {
     echo '<div class="notice notice-info is-dismissible ripple_wp_update_notice"><p>';
-    printf(__('<b>Thanks for choosing the RippleWP Theme!</b><br /><br /> We have some beautiful layouts to get your site up and running asap. Install the <a href="https://chamberdashboard.com/downloads/ripplewp-theme-package1/" target="_blank">Layout Block Plugin</a> to choose a demo layout or get started <a href="'.$customizer_url.'">customizing</a> your site. | <a href="%1$s">Hide Notice</a>'), '?ripple_wp_notice_ignore=0');
+    printf(__('<b>Thanks for choosing the RippleWP Theme!</b><br /><br /> We have some beautiful layouts to get your site up and running asap. Install the <a href="https://chamberdashboard.com/downloads/ripplewp-theme-package1/" target="_blank">Layout Block Plugin</a> to choose a demo layout or get started <a href="'.$customizer_url.'">customizing</a> your site. | <a href="%1$s">Hide Notice</a>'), '?ripple_wp_admin_notice_ignore=0');
     echo "</p></div>";
 	}
 }

@@ -43,9 +43,13 @@
     //Text color
     wp.customize( 'text_color', function( value ) {
 		value.bind( function( to ) {
-				$( 'body, input, select, optgroup, textarea' ).css( {
+				$( 'body, input, select, optgroup, textarea, .has-text-color-color' ).css( {
 					color: to,
-				} );
+                } );
+                
+                $('.has-text-color-background-color').css({
+                    background:to,
+                })
 			}
 		);
     } );
@@ -53,22 +57,29 @@
     //Accent Color
     wp.customize( 'accent_color', function( value ) {
 		value.bind( function( to ) {
-				$( 'button, input[type="button"], input[type="reset"], input[type="submit"]' ).css( {
+				$( 'input[type="button"], input[type="reset"], input[type="submit"], .has-accent-color-background-color' ).css( {
 					background: to,
                 } );
-                $('a, a:visited, a:hover, a:focus, a:active, #primary-menu ul li.current-menu-item a').css({
+                /*$('a, a:visited, a:hover, a:focus, a:active, #primary-menu ul li.current-menu-item a').css({
                     color: to,
-                });
-			}
+                });*/
+                $('p a, p a:visited, p a:hover, p a:focus, p a:active, span a, span a:visited, span a:hover, span a:focus, span a:active, #primary-menu li a:hover, #primary-menu li a:focus, #primary-menu li a:active, #primary-menu ul li.current-menu-item a, #primary-menu li.menu-item-has-children:hover:after, #primary-menu li.menu-item-has-children.focus:after, .has-accent-color-color, .topbar ul#top-menu li a, .main-navigation.toggled ul li.focus > a').css({
+                color: to,
+                })
+            }
 		);
     } );
 
     //Top Bar & Footer Color
     wp.customize( 'top_bar_footer_color', function( value ) {
 		value.bind( function( to ) {
-				$( '.topbar, footer.site-footer' ).css( {
+				$( '.topbar, footer.site-footer, .has-theme-color-one-background-color' ).css( {
 					background: to,
-				} );
+                } );
+                
+                $('.has-theme-color-one-color').css({
+                    color: to,
+                })
 			}
 		);
     } );
@@ -76,9 +87,13 @@
     //Header Background Color
     wp.customize( 'header_color', function( value ) {
 		value.bind( function( to ) {
-				$( 'header.site-header' ).css( {
+				$( 'header.site-header, .has-theme-color-two-background-color' ).css( {
 					background: to,
-				} );
+                } );
+                
+                $('.has-theme-color-two-color').css({
+                    color:to,
+                })
 			}
 		);
     } );
@@ -93,10 +108,10 @@
 		);
     } );
 
-    //Menu Background Color
+    //Menu Text Color
     wp.customize( 'menu_text_color', function( value ) {
 		value.bind( function( to ) {
-				$( '.main-navigation ul li a' ).css( {
+				$( '.main-navigation ul li a, .main-navigation ul li.menu-item-has-children:after' ).css( {
 					color: to,
 				} );
 			}
