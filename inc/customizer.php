@@ -53,22 +53,22 @@ function ripple_wp_docs_help_register( $wp_customize ) {
             $important_links = array(
                 'welcome' => array(
                     'link' => esc_url('themes.php?page=rp_options'),
-                    'text' => __('Install a Demo Layout', 'ripple_wp'),
+                    'text' => __('Install a Demo Layout', 'ripple-wp'),
                     'target'	=> __(''),
                 ),
                 'demo-docs' => array(
                     'link' => esc_url('https://chamberdashboard.com/docs/wordpress-themes/'),
-                    'text' => __('Customize Demo Layouts', 'ripple_wp'),
+                    'text' => __('Customize Demo Layouts', 'ripple-wp'),
                     'target'	=> __('_blank'),
                 ),
                 'documentation' => array(
                     'link' => esc_url('https://chamberdashboard.com/docs/wordpress-themes/ripplewp/'),
-                    'text' => __('RippleWP Documentation', 'ripple_wp'),
+                    'text' => __('RippleWP Documentation', 'ripple-wp'),
                     'target'	=> __('blank'),
                 ),
                 'support' => array(
                     'link' => esc_url('https://chamberdashboard.com/my-account/'),
-                    'text' => __('Get Support', 'ripple_wp'),
+                    'text' => __('Get Support', 'ripple-wp'),
                     'target'	=> __('blank'),
                 ),
             );
@@ -82,7 +82,7 @@ function ripple_wp_docs_help_register( $wp_customize ) {
         'documentation',
             array(
                 'title' 		=> __('How to Use RippleWP', 'chamber-inspired'),
-                'description'	=> __( 'Important links to documentation and support for the RippleWP theme.', 'ripple_wp' ),
+                'description'	=> __( 'Important links to documentation and support for the RippleWP theme.', 'ripple-wp' ),
                 'priority' 		=> 1,
             )
     );
@@ -93,7 +93,7 @@ function ripple_wp_docs_help_register( $wp_customize ) {
     ));
     
     $wp_customize->add_control(new RIPPLE_WP_Important_Links($wp_customize, 'important_links', array(
-        'label' 	=> __('Instructions for getting started with your new theme and how to get support.', 'ripple_wp'),
+        'label' 	=> __('Instructions for getting started with your new theme and how to get support.', 'ripple-wp'),
         'section' 	=> 'documentation',
         'settings'	=> 'ripple_wp[ripple-wp-important-links]'
     )));
@@ -104,7 +104,7 @@ add_action( 'customize_register', 'ripple_wp_docs_help_register' );
 
 function ripple_wp_theme_options($wp_customize){
     $wp_customize->add_section('header_options' , array(
-        'title'     => __('Theme Options', 'ripple_wp'),
+        'title'     => __('Theme Options', 'ripple-wp'),
         'priority'  => 30
     ));
 
@@ -164,9 +164,9 @@ function ripple_wp_theme_options($wp_customize){
         'settings' => 'add_search_icon',
         'type' => 'radio',
         'choices' => array(
-            'top_bar' => __( 'Top Menu', 'ripple_wp' ),
-            'primary_menu' => __( 'Main Menu', 'ripple_wp' ),
-            'none' => __( 'None', 'ripple_wp' ),
+            'top_bar' => __( 'Top Menu', 'ripple-wp' ),
+            'primary_menu' => __( 'Main Menu', 'ripple-wp' ),
+            'none' => __( 'None', 'ripple-wp' ),
           ),
     ) );
 
@@ -198,7 +198,7 @@ add_action( 'customize_register', 'ripple_wp_theme_options' );
 /**Ripple WP Theme Footer Options */
 function ripple_wp_theme_footer_options($wp_customize){
     $wp_customize->add_section('footer_options' , array(
-        'title'     => __('Theme Footer Options', 'ripple_wp'),
+        'title'     => __('Theme Footer Options', 'ripple-wp'),
         'priority'  => 150
     ));
     $bloginfo = get_bloginfo('name');    
@@ -220,7 +220,7 @@ add_action( 'customize_register', 'ripple_wp_theme_footer_options' );
 /** Ripple WP Blog Page Options */
 function ripple_wp_theme_blog_options($wp_customize){
     $wp_customize->add_section('blog_options' , array(
-        'title'     => __('Blog Page Options', 'ripple_wp'),
+        'title'     => __('Blog Page Options', 'ripple-wp'),
         'priority'  => 150
     ));
 
@@ -295,7 +295,7 @@ function ripple_wp_colors($wp_customize){
   
       $wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'text_color', array(
         'section' => 'colors',
-        'label'   => esc_html__( 'Text color', 'ripple_wp' ),
+        'label'   => esc_html__( 'Text color', 'ripple-wp' ),
       ) ) );
 
     // Accent color
@@ -307,7 +307,7 @@ function ripple_wp_colors($wp_customize){
   
     $wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'accent_color', array(
     'section' => 'colors',
-    'label'   => esc_html__( 'Accent color', 'ripple_wp' ),
+    'label'   => esc_html__( 'Accent color', 'ripple-wp' ),
     ) ) );
 
     // Topbar & Footer Background color
@@ -320,7 +320,7 @@ function ripple_wp_colors($wp_customize){
 
     $wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'top_bar_footer_color', array(
     'section' => 'colors',
-    'label'   => esc_html__( 'Topbar & Footer Background', 'ripple_wp' ),
+    'label'   => esc_html__( 'Topbar & Footer Background', 'ripple-wp' ),
     ) ) );
 
     $wp_customize->add_setting( 'header_color', array(
@@ -331,7 +331,7 @@ function ripple_wp_colors($wp_customize){
 
     $wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'header_color', array(
         'section' => 'colors',
-        'label'   => esc_html__( 'Header Background', 'ripple_wp' ),
+        'label'   => esc_html__( 'Header Background', 'ripple-wp' ),
     ) ) );
 
     // Menu & Section Background color
@@ -343,7 +343,7 @@ function ripple_wp_colors($wp_customize){
     
     $wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'menu_bck_color', array(
     'section' => 'colors',
-    'label'   => esc_html__( 'Menu Background', 'ripple_wp' ),
+    'label'   => esc_html__( 'Menu Background', 'ripple-wp' ),
     'active_callback' => 'is_logo_center',
     ) ) );
 
@@ -356,7 +356,7 @@ function ripple_wp_colors($wp_customize){
     
     $wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'menu_text_color', array(
     'section' => 'colors',
-    'label'   => esc_html__( 'Menu Text Color', 'ripple_wp' ),
+    'label'   => esc_html__( 'Menu Text Color', 'ripple-wp' ),
     //'active_callback' => 'is_logo_center',
     ) ) );
 }

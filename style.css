@@ -1485,7 +1485,7 @@ main {
 	max-width: none;
 }
 
-.page .entry-content > *:not(.alignwide):not(.alignfull):not(.alignleft):not(.alignright):not(.is-style-wide), .page footer.entry-footer > *:not(.alignwide):not(.alignfull):not(.alignleft):not(.alignright):not(.is-style-wide) {
+.page .entry-content > *:not(.alignwide):not(.alignfull):not(.alignleft):not(.alignright):not(.is-style-wide), .page footer.entry-footer > *:not(.alignwide):not(.alignfull):not(.alignleft):not(.alignright):not(.is-style-wide), .page #comments {
 	margin-left: auto;
 	margin-right: auto;
 	width: 90%;

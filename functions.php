@@ -236,23 +236,23 @@ $theme_color_two = theme_colors('header_color', '#ffffff');
 
 add_theme_support( 'editor-color-palette', array(
     array(
-		'name'  => __( 'Text Color', 'genesis-sample' ),
+		'name'  => __( 'Text Color', 'ripple-wp' ),
 		'slug'  => 'text-color',
 		'color' => $text_color,
     ),
     array(
-		'name'  => __( 'Accent Color', 'genesis-sample' ),
+		'name'  => __( 'Accent Color', 'ripple-wp' ),
 		'slug'  => 'accent-color',
 		'color' => $accent_color,
 	),
 	array(
-		'name'  => __( 'Theme Color 1', 'ripple_wp' ),
+		'name'  => __( 'Theme Color 1', 'ripple-wp' ),
 		'slug'  => 'theme-color-one',
 		'color'	=> $theme_color_one,
     ),
     
     array(
-		'name'  => __( 'Theme Color 2', 'ripple_wp' ),
+		'name'  => __( 'Theme Color 2', 'ripple-wp' ),
 		'slug'  => 'theme-color-two',
 		'color'	=> $theme_color_two,
 	),
@@ -342,12 +342,6 @@ function ripple_wp_scripts() {
 	}
 }
 add_action( 'wp_enqueue_scripts', 'ripple_wp_scripts' );
-
-/*function ripple_wp_admin_scripts(){
-    wp_enqueue_script( 'ripple-wp-theme-scripts', get_template_directory_uri() . '/js/theme_scripts.js', array( 'jquery' ), _S_VERSION, true );
-}*/
-
-//add_action( 'admin_enqueue_scripts', 'ripple_wp_admin_scripts' );
 
 /**
  * Implement the Custom Header feature.
@@ -448,11 +442,6 @@ function ripple_wp_add_search_toggle($items, $args) {
 }
 add_filter('wp_nav_menu_items', 'ripple_wp_add_search_toggle', 10, 2);
 
-/*$show_search    = get_theme_mod( 'add_search_icon' );
-if( $show_search == 'top_bar' ) {
-    add_filter('wp_nav_menu_items', 'ripple_wp_add_search_toggle', 10, 2);
-}*/
-
 
 /**Custom Header Image */
 function ripple_wp_custom_header_image(){
@@ -500,7 +489,7 @@ if ( ! function_exists( 'ripple_wp_page_add_meta_box' ) ) {
 	 * @since 1.0.0
 	 */
 	function ripple_wp_page_add_meta_box() {
-		add_meta_box( 'additional-page-metabox-options', esc_html__( 'Ripple WP Page Settings', 'ripple_wp' ), 'ripple_wp_page_metabox_controls', 'page', 'side', 'low' );
+		add_meta_box( 'additional-page-metabox-options', esc_html__( 'Ripple WP Page Settings', 'ripple-wp' ), 'ripple_wp_page_metabox_controls', 'page', 'side', 'low' );
 	}
 }
 
@@ -517,7 +506,7 @@ function ripple_wp_page_metabox_controls( $post )
     ?>
     <div class="page_meta_extras">
         <p>
-            <label><input type="checkbox" name="ripple_wp_hide_page_title" value="1" <?php checked( $ripple_wp_hide_page_title, 1 ); ?> /><?php esc_attr_e( 'Hide Page Title', 'ripple_wp' ); ?></label>
+            <label><input type="checkbox" name="ripple_wp_hide_page_title" value="1" <?php checked( $ripple_wp_hide_page_title, 1 ); ?> /><?php esc_attr_e( 'Hide Page Title', 'ripple-wp' ); ?></label>
         </p>
     </div>
     <?php
@@ -588,7 +577,7 @@ function ripple_wp_display_install_notice() {
         /* Check that the user hasn't already clicked to ignore the message */
 	if ( ! get_user_meta($user_id, 'ripple_wp_admin_notice_ignore') ) {
     echo '<div class="notice notice-info is-dismissible ripple_wp_update_notice"><p>';
-    printf(__('<b>Thanks for choosing the RippleWP Theme!</b><br /><br /> We have some beautiful layouts to get your site up and running asap. Install the <a href="https://chamberdashboard.com/downloads/ripplewp-theme-package1/" target="_blank">Layout Block Plugin</a> to choose a demo layout or get started <a href="'.$customizer_url.'">customizing</a> your site. | <a href="%1$s">Hide Notice</a>'), '?ripple_wp_admin_notice_ignore=0');
+    printf(__('<b>Thanks for choosing the RippleWP Theme!</b><br /><br /> We have some beautiful layouts to get your site up and running asap. Install the <a href="https://chamberdashboard.com/downloads/ripplewp-theme-package1/" target="_blank">Layout Block Plugin</a> to choose a demo layout or get started <a href="'.$customizer_url.'">customizing</a> your site. | <a href="%1$s">Hide Notice</a>', 'ripple-wp'), '?ripple_wp_admin_notice_ignore=0');
     echo "</p></div>";
 	}
 }

@@ -19,13 +19,6 @@ function add_ripple_wp_admin_styles(){
 }
 add_action( 'admin_enqueue_scripts', 'add_ripple_wp_admin_styles' );
 
-/*if ( is_admin() ) {
-    $my_current_screen = get_current_screen();
-    if ( isset( $my_current_screen->base ) && 'rp_options' === $my_current_screen->base ) {
-        add_action( 'admin_enqueue_scripts', 'ripple_wp_admin_styles' );
-    }
-}*/
-
 add_action('admin_menu', 'ripple_wp_options_page');
 
 function ripple_wp_options_page(){
@@ -162,16 +155,16 @@ function ripple_wp_welcome(){
 function ripple_wp_theme_info(){
     ?>
     <div class="ripple_wp_tab_content">
-        <h3><?php echo __('Theme Customizer', 'ripple_wp'); ?></h3>
-        <p><?php echo __('All the theme options are available via the Theme Customizer.', 'ripple_wp'); ?></p>
+        <h3><?php echo __('Theme Customizer', 'ripple-wp'); ?></h3>
+        <p><?php echo __('All the theme options are available via the Theme Customizer.', 'ripple-wp'); ?></p>
         <a class=" button primary" href-"">Customize My Theme</a>
         <br />
-        <h3><?php echo __('Documentation', 'ripple_wp'); ?></h3>
-        <p><?php echo __('Please refer to the theme documentation for step-by-step instructions.', 'ripple_wp'); ?></p>
+        <h3><?php echo __('Documentation', 'ripple-wp'); ?></h3>
+        <p><?php echo __('Please refer to the theme documentation for step-by-step instructions.', 'ripple-wp'); ?></p>
         <a class=" button primary" href-"">Theme Documentation</a>
         <br />
-        <h3><?php echo __('Get Support', 'ripple_wp'); ?></h3>
-        <p><?php echo __('Visit our documentation library or submit your question to our support team.', 'ripple_wp'); ?></p>
+        <h3><?php echo __('Get Support', 'ripple-wp'); ?></h3>
+        <p><?php echo __('Visit our documentation library or submit your question to our support team.', 'ripple-wp'); ?></p>
         <a class=" button primary" href-"">Customer Support</a>
     </div>
     <?php
