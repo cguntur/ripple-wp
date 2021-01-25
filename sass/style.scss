@@ -2,15 +2,15 @@
 Theme Name: RippleWP
 Theme URI: https://www.chamberdashboard.com
 Author: Chamber Dashboard
-Author URI: https://www.chamberdashboard.com
 Description: RippleWP is a responsive, multipurpose WordPress theme designed especially for associations, chambers of commerce and membership organizations. This theme is built for simplicity and ease of use. It has a clean, professional look that will make your site stand out. RippleWP works with the Chamber Dashboard suite of plugins to add features most used by membership organizations such as welcoming new members, featuring upcoming events, recognizing sponsors, as well as helping you create a robust Business Directory for your site. 
 Version: 1.0.0
-Tested up to: 5.4
-Requires PHP: 5.6
+Tested up to: 5.6
+Requires at least: 5.0
+Requires PHP: 7.0
 License: GNU General Public License v2 or later
 License URI: LICENSE
 Text Domain: ripple-wp
-Tags: custom-background, custom-logo, custom-menu, featured-images, threaded-comments, translation-ready, Gutenberg block ready, full-width-template, flexible-header, custom-colors, custom-header, flexbox footer-widgets, blog, theme-options, cross-browser compatible, SEO-friendly, rtl-language-support, chamber of commerce, professional membership association, visitor bureau, alumni groups, merchant association, social clubs
+Tags: custom-background, custom-logo, custom-menu, featured-images, threaded-comments, translation-ready, full-width-template, flexible-header, custom-colors, custom-header, blog, theme-options, rtl-language-support
 
 This theme, like WordPress, is licensed under the GPL.
 Use it to make something cool, have fun, and share what you've learned.
@@ -295,14 +295,7 @@ header{
                         @media screen and (min-width:768px){
                             /*width:200px;*/
                         }
-                        
-                        li{
-                            ul{
-                                /*margin-left:130px;*/
-                            }
-                        }
                     }
-                    
                 }
             }
 
@@ -372,15 +365,23 @@ aside{
 }
 
 .topbar.search .search-form:before, #primary-menu .search-form:before  {
-    content: "\f179";
+    font-family:FontAwesome!important;
+	font-weight: 900;
+	content: "\f002";
     color: $color__menu_link;
     position: relative;
-    top: 6px;
     left: 30px;
-    font: normal 20px/1 dashicons!important;
-    content: "\f179";
+    /*font: normal 20px/1 dashicons!important;*/
     speak: none;
     -webkit-font-smoothing: antialiased;
+}
+
+.topbar.search .search-form:before{
+    top: 2px;
+}
+
+#primary-menu .search-form:before{
+    top:4px;
 }
 
 .topbar.search .search-field, #primary-menu .search-field {
@@ -625,7 +626,12 @@ main{
                             font-size:45px;
                             text-decoration: none;
                             text-transform: uppercase;
+
+                            &:hover{
+                                text-decoration: underline;
+                            }
                         }
+
                     }
                     .entry-meta{
                         font-size: 13px;
@@ -679,6 +685,10 @@ main{
                                 font-size:35px;
                                 text-decoration: none;
                                 text-transform:none;
+
+                                &:hover{
+                                    text-decoration: underline;
+                                }
                             }
                         }
                         .entry-meta{
@@ -722,7 +732,7 @@ main.site-main, .archive.site-main{
         }
     }
     article{
-        padding:0px 0px 45px 0px;
+        padding:0px;
         
         
 
@@ -854,14 +864,37 @@ button.menu-toggle{
 /*Theme Color Styles for Block Editor*/
 
 .has-theme-color-one-color{
+    color:$color__background-header;
+}
 
+.has-theme-color-one-background-color{
+    background-color: $color__background-header;
 }
 
 .has-theme-color-two-color{
-
+    color:$color__background-body;
 }
 
+.has-theme-color-two-background-color{
+    background-color:$color__background-body;
+}
 
+.has-accent-color-color{
+    color:$color__link;
+}
+
+.has-accent-color-background-color{
+    background-color:$color__link;
+}
+
+.has-text-color-color{
+    color:$color__text-main;
+}
+
+.has-text-color-background-color{
+    background-color:$color__text-main;
+
+}
 
 
 /** Adjusting for BD Styles*/

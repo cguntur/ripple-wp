@@ -4,7 +4,7 @@
 --------------------------------------------------------------*/
 .wrap.ripple_wp h1 {
   text-align: center;
-  color: #d50943;
+  color: #b50143;
   font-size: 3em; }
 
 .wrap.ripple_wp h2 {
@@ -40,7 +40,9 @@
     flex-grow: 1;
     padding: 15px; }
     .options_page_grid .column.left {
-      flex-basis: 80%; }
+      flex-basis: 70%; }
+    .options_page_grid .column.right {
+      min-width: 150px; }
   .options_page_grid .changelog_wrapper {
     display: flex;
     flex-direction: column; }

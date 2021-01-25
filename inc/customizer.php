@@ -59,17 +59,17 @@ function ripple_wp_docs_help_register( $wp_customize ) {
                 'demo-docs' => array(
                     'link' => esc_url('https://chamberdashboard.com/docs/wordpress-themes/'),
                     'text' => __('Customize Demo Layouts', 'ripple-wp'),
-                    'target'	=> __('_blank'),
+                    'target'	=> '_blank',
                 ),
                 'documentation' => array(
                     'link' => esc_url('https://chamberdashboard.com/docs/wordpress-themes/ripplewp/'),
                     'text' => __('RippleWP Documentation', 'ripple-wp'),
-                    'target'	=> __('blank'),
+                    'target'	=> '_blank',
                 ),
                 'support' => array(
                     'link' => esc_url('https://chamberdashboard.com/my-account/'),
                     'text' => __('Get Support', 'ripple-wp'),
-                    'target'	=> __('blank'),
+                    'target'	=> '_blank',
                 ),
             );
             foreach ($important_links as $important_link) {
@@ -81,7 +81,7 @@ function ripple_wp_docs_help_register( $wp_customize ) {
     $wp_customize->add_section(
         'documentation',
             array(
-                'title' 		=> __('How to Use RippleWP', 'chamber-inspired'),
+                'title' 		=> __('How to Use RippleWP', 'ripple-wp'),
                 'description'	=> __( 'Important links to documentation and support for the RippleWP theme.', 'ripple-wp' ),
                 'priority' 		=> 1,
             )
@@ -120,8 +120,8 @@ function ripple_wp_theme_options($wp_customize){
         'settings' => 'header_layout_options',
         'type' => 'radio',
         'choices' => array(
-            'logo_center' => __( 'Logo & Site Information in the center' ),
-            'logo_left' => __( 'Logo & Site Information to the left' ),
+            'logo_center' => __( 'Logo & Site Information in the center','ripple-wp'  ),
+            'logo_left' => __( 'Logo & Site Information to the left', 'ripple-wp'  ),
           ),
     ) );
 
@@ -182,13 +182,13 @@ function ripple_wp_theme_options($wp_customize){
         'settings' => 'header_font_options',
         'type' => 'select',
         'choices' => array(
-            'Open Sans' => __( 'Open Sans' ),
-            'Roboto' => __( 'Roboto' ),
-            'Slabo'   => __('Slabo'),
-            'Oswald'     =>  __('Oswald'),
-            'Cairo'    =>  __('Cairo'),
-            'BioRhyme'    =>  __('BioRhyme'),
-            'Rakkas'    =>  __('Rakkas')
+            'Open Sans' => __( 'Open Sans', 'ripple-wp' ),
+            'Roboto' => __( 'Roboto', 'ripple-wp' ),
+            'Slabo'   => __('Slabo', 'ripple-wp'),
+            'Oswald'     =>  __('Oswald', 'ripple-wp'),
+            'Cairo'    =>  __('Cairo', 'ripple-wp'),
+            'BioRhyme'    =>  __('BioRhyme', 'ripple-wp'),
+            'Rakkas'    =>  __('Rakkas', 'ripple-wp')
           ),
     ) );
 }
@@ -236,8 +236,8 @@ function ripple_wp_theme_blog_options($wp_customize){
         'settings' => 'blog_page_layout',
         'type' => 'radio',
         'choices' => array(
-            'list' => __( 'List' ),
-            'grid' => __( 'Grid' ),
+            'list' => __( 'List', 'ripple-wp' ),
+            'grid' => __( 'Grid', 'ripple-wp' ),
           ),
     ) );
 
@@ -249,7 +249,7 @@ function ripple_wp_theme_blog_options($wp_customize){
     ) );
 
     $wp_customize->add_control( 'blog_content_categories', array(
-        'label' => 'Show categories on blog page',
+        'label' => __('Show categories on blog page', 'ripple-wp'),
         'section' => 'blog_options',
         'settings' => 'blog_content_categories',
         'type' => 'checkbox',
@@ -262,7 +262,7 @@ function ripple_wp_theme_blog_options($wp_customize){
     ) );
 
     $wp_customize->add_control( 'blog_content_tags', array(
-        'label' => 'Show tags on blog page',
+        'label' => __('Show tags on blog page', 'ripple-wp'),
         'section' => 'blog_options',
         'settings' => 'blog_content_tags',
         'type' => 'checkbox',
@@ -275,7 +275,7 @@ function ripple_wp_theme_blog_options($wp_customize){
     ) );
 
     $wp_customize->add_control( 'blog_content_author', array(
-        'label' => 'Show author on blog page',
+        'label' => __('Show author on blog page', 'ripple-wp'),
         'section' => 'blog_options',
         'settings' => 'blog_content_author',
         'type' => 'checkbox',
@@ -300,7 +300,7 @@ function ripple_wp_colors($wp_customize){
 
     // Accent color
     $wp_customize->add_setting( 'accent_color', array(
-      'default'   => '#d50943',
+      'default'   => '#b50143',
       'transport' => 'postMessage',
       'sanitize_callback' => 'sanitize_hex_color',
     ) );
@@ -410,7 +410,7 @@ function ripple_wp_customize_partial_logo(){
             $wp_customize,
             'logo',
             array(
-                'label'      => __( 'Upload a logo', 'theme_name' ),
+                'label'      => __( 'Upload a logo', 'ripple-wp' ),
                 'section'    => 'title_tagline',
                 'settings'   => 'logo',
                 //'context'    => 'your_setting_context'
@@ -444,19 +444,15 @@ function ripple_wp_theme_get_customizer_css() {
         color: <?php echo $text_color; ?>
     }
 
-    p a, p a:visited, p a:hover, p a:focus, p a:active, span a, span a:visited, span a:hover, span a:focus, span a:active, #primary-menu li a:hover, #primary-menu li a:focus, #primary-menu li a:active, #primary-menu ul li.current-menu-item a, #primary-menu li.menu-item-has-children:hover:after, #primary-menu li.menu-item-has-children.focus:after, .has-accent-color-color, .topbar ul#top-menu li a, .main-navigation.toggled ul li.focus > a{
+    p a, p a:visited, p a:hover, p a:focus, p a:active, span a, span a:visited, span a:hover, span a:focus, span a:active, #primary-menu li a:hover, #primary-menu li a:focus, #primary-menu li a:active, #primary-menu ul li.current-menu-item a, #primary-menu li.menu-item-has-children:hover:after, #primary-menu li.menu-item-has-children.focus:after, .has-accent-color-color, .topbar ul#top-menu li a, .main-navigation.toggled ul li.focus > a, li a, h1 a, h2 a, h3 a, h4 a, h5 a, h6 a, a:hover, a:focus, a:visited{
         color: <?php echo $accent_color; ?>;
     }
 
-    button, 
-    input[type="button"],
-    input[type="reset"],
-    input[type="submit"],
-    {
+    button, input[type="button"], input[type="reset"], input[type="submit"]{
         background: <?php echo $accent_color; ?>
     }
 
-    .main-navigation ul li.current-menu-item a,.main-navigation ul li.current_page_ancestor a #top-menu li a{
+    .main-navigation ul li.current-menu-item a,.main-navigation ul li.current_page_ancestor a, #top-menu li a{
         color: <?php echo $accent_color; ?>
     }
 

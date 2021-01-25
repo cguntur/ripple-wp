@@ -228,7 +228,7 @@ function theme_colors($color_option, $default_color){
 
 $text_color = theme_colors('text_color', '#292b26');
 
-$accent_color = theme_colors('accent_color', '#d50943' );
+$accent_color = theme_colors('accent_color', '#b50143' );
 
 $theme_color_one = theme_colors('top_bar_footer_color', '#5fd3e2');
 
@@ -506,7 +506,7 @@ function ripple_wp_page_metabox_controls( $post )
     ?>
     <div class="page_meta_extras">
         <p>
-            <label><input type="checkbox" name="ripple_wp_hide_page_title" value="1" <?php checked( $ripple_wp_hide_page_title, 1 ); ?> /><?php esc_attr_e( 'Hide Page Title', 'ripple-wp' ); ?></label>
+            <label><input type="checkbox" name="ripple_wp_hide_page_title" value="1" <?php checked( $ripple_wp_hide_page_title, 1 ); ?> /><?php esc_html_e( 'Hide Page Title', 'ripple-wp' ); ?></label>
         </p>
     </div>
     <?php
@@ -573,13 +573,14 @@ function add_arrow( $output, $item, $depth, $args ){
 function ripple_wp_display_install_notice() {
     global $current_user ;
     $customizer_url = self_admin_url() . 'customize.php';
-        $user_id = $current_user->ID;
-        /* Check that the user hasn't already clicked to ignore the message */
-	if ( ! get_user_meta($user_id, 'ripple_wp_admin_notice_ignore') ) {
-    echo '<div class="notice notice-info is-dismissible ripple_wp_update_notice"><p>';
-    printf(__('<b>Thanks for choosing the RippleWP Theme!</b><br /><br /> We have some beautiful layouts to get your site up and running asap. Install the <a href="https://chamberdashboard.com/downloads/ripplewp-theme-package1/" target="_blank">Layout Block Plugin</a> to choose a demo layout or get started <a href="'.$customizer_url.'">customizing</a> your site. | <a href="%1$s">Hide Notice</a>', 'ripple-wp'), '?ripple_wp_admin_notice_ignore=0');
-    echo "</p></div>";
-	}
+    $theme_options_page_url = self_admin_url() . 'themes.php?page=rp_options';
+    $user_id = $current_user->ID;
+    /* Check that the user hasn't already clicked to ignore the message */
+    if ( ! get_user_meta($user_id, 'ripple_wp_admin_notice_ignore') ) {
+        echo '<div class="notice notice-info is-dismissible ripple_wp_update_notice"><p>';
+        printf(__('<b>Thanks for choosing the RippleWP Theme!</b><br /><br /> We have some beautiful layouts to get your site up and running asap. Install the <a href="'.$theme_options_page_url.'">Layout Block Plugin</a> to choose a demo layout or get started <a href="'.$customizer_url.'">customizing</a> your site. | <a href="%1$s">Hide Notice</a>', 'ripple-wp'), '?ripple_wp_admin_notice_ignore=0');
+        echo "</p></div>";
+    }
 }
 add_action( 'admin_notices', 'ripple_wp_display_install_notice' );
 

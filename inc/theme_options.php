@@ -62,7 +62,6 @@ function ripple_wp_tabs_content($riple_wp_active_tab){
         break;
 
         case 'rp_license':
-        //cdash_export_form();
 		ripple_wp_license();
         break;
 
@@ -90,12 +89,12 @@ function ripple_wp_theme_demo_content(){
                 if(function_exists('ripple_wp_bl_wp_version')){
                     if(class_exists('OCDI_Plugin')){
                     ?>
-                    <a id="layout_one" class="install_layout button" href="<?php echo $demo_content_install_url; ?>">Import Demo Data</a>
+                    <a id="layout_one" class="install_layout button" href="<?php echo $demo_content_install_url; ?>"><?php _e('Import Demo Data', 'ripple-wp'); ?></a>
                     <?php    
                     }
                 }else{
                 ?>
-                <a class="install_layout button" href="">Get Block Layouts for RippleWP</a>
+                <a class="install_layout button" href=" https://chamberdashboard.com/downloads/ripplewp-theme-package1/" target="_blank"><?php _e('Get Block Layouts for RippleWP', 'ripple-wp'); ?></a>
                 <?php                    
                 }
                 ?>
@@ -112,10 +111,10 @@ function ripple_wp_theme_options_tabs(){
         global $riple_wp_active_tab;
         $riple_wp_active_tab = isset( $_GET['tab'] ) ? sanitize_text_field($_GET['tab']) : 'rp_theme_welcome'; ?>
         <h2 class="nav-tab-wrapper">
-            <a class="nav-tab <?php echo $riple_wp_active_tab == 'rp_theme_welcome' ? 'nav-tab-active' : ''; ?>" href="<?php echo admin_url( 'admin.php?page=rp_options&tab=rp_theme_welcome' ); ?>"><?php _e( 'RippleWP', 'cdash' ); ?> </a>
-            <a class="nav-tab <?php echo $riple_wp_active_tab == 'rp_theme_info' ? 'nav-tab-active' : ''; ?>" href="<?php echo admin_url( 'admin.php?page=rp_options&tab=rp_theme_info' ); ?>"><?php _e( 'Get Help', 'cdash' ); ?> </a>        
-            <a class="nav-tab <?php echo $riple_wp_active_tab == 'rp_license' ? 'nav-tab-active' : ''; ?>" href="<?php echo admin_url( 'admin.php?page=rp_options&tab=rp_license' ); ?>"><?php _e( 'License', 'cdash' ); ?> </a>
-            <a class="nav-tab <?php echo $riple_wp_active_tab == 'rp_changelog' ? 'nav-tab-active' : ''; ?>" href="<?php echo admin_url( 'admin.php?page=rp_options&tab=rp_changelog' ); ?>"><?php _e( 'Changelog', 'cdash' ); ?> </a>        
+            <a class="nav-tab <?php echo $riple_wp_active_tab == 'rp_theme_welcome' ? 'nav-tab-active' : ''; ?>" href="<?php echo admin_url( 'admin.php?page=rp_options&tab=rp_theme_welcome' ); ?>"><?php _e( 'RippleWP', 'ripple-wp' ); ?> </a>
+            <a class="nav-tab <?php echo $riple_wp_active_tab == 'rp_theme_info' ? 'nav-tab-active' : ''; ?>" href="<?php echo admin_url( 'admin.php?page=rp_options&tab=rp_theme_info' ); ?>"><?php _e( 'Get Help', 'ripple-wp' ); ?> </a>        
+            <a class="nav-tab <?php echo $riple_wp_active_tab == 'rp_license' ? 'nav-tab-active' : ''; ?>" href="<?php echo admin_url( 'admin.php?page=rp_options&tab=rp_license' ); ?>"><?php _e( 'License', 'ripple-wp' ); ?> </a>
+            <a class="nav-tab <?php echo $riple_wp_active_tab == 'rp_changelog' ? 'nav-tab-active' : ''; ?>" href="<?php echo admin_url( 'admin.php?page=rp_options&tab=rp_changelog' ); ?>"><?php _e( 'Changelog', 'ripple-wp' ); ?> </a>        
         </h2>
         <div class="wrap">
             <?php ripple_wp_tabs_content($riple_wp_active_tab); ?>
@@ -125,6 +124,7 @@ function ripple_wp_theme_options_tabs(){
 }
 
 function ripple_wp_welcome(){
+    $license_page_url = self_admin_url() .'admin.php?page=rp_options&tab=rp_license';
 ?>
     <h2><?php echo __('RippleWP offers customized layouts that work with the block editor to help you build a professional website quickly and easily.', 'ripple-wp'); ?></h2>
 
@@ -141,7 +141,7 @@ function ripple_wp_welcome(){
             </tr>
             <tr>
                 <th>STEP #3:</th>
-                <td><?php echo __('Enter your <a href="'. self_admin_url() .'admin.php?page=rp_options&tab=rp_license">license keys</a>', 'ripple-wp'); ?></td>
+                <td><?php echo __('Enter your <a href="'.$license_page_url.'">license keys</a>', 'ripple-wp'); ?></td>
             </tr>
             <tr>
                 <th>STEP #4:</th>

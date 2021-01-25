@@ -58,7 +58,11 @@
         padding:15px;
 
         &.left{
-            flex-basis: 80%;
+            flex-basis: 70%;
+        }
+
+        &.right{
+            min-width:150px;
         }
     }
 

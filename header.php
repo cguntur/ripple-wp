@@ -51,14 +51,14 @@
 			$ripple_wp_description = get_bloginfo( 'description', 'display' );
 			if ( $ripple_wp_description || is_customize_preview() ) :
 				?>
-				<p class="site-description"><?php echo $ripple_wp_description; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></p>
+				<h2 class="site-description"><?php echo $ripple_wp_description; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></h2>
             <?php endif; ?>
             
         </div><!-- .site-branding -->
 
 		<nav id="site-navigation" class="main-navigation">
 			<button class="menu-toggle" aria-controls="primary-menu" aria-expanded="false">
-               <span class="screen-reader-text"><?php esc_html_e( 'Primary Menu', 'tfc-basic' ); ?></span>
+               <span class="screen-reader-text"><?php esc_html_e( 'Primary Menu', 'ripple-wp' ); ?></span>
                 <svg class="hamburger" width="24" height="19" viewBox="0 0 24 19" fill="none" xmlns="http://www.w3.org/2000/svg" xml:space="preserve"><path d="M0 1.5h24M0 9.5h24M0 17.5h24" stroke="currentColor" stroke-width="2"/></svg>
                 <!--<svg class="close" width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" xml:space="preserve"></style><path class="st0" d="M1.5 18.3l17-17M1.7 1l17 17" stroke="currentColor" stroke-width="2" /></svg>-->
             </button>

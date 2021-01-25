@@ -2,15 +2,15 @@
 Theme Name: RippleWP
 Theme URI: https://www.chamberdashboard.com
 Author: Chamber Dashboard
-Author URI: https://www.chamberdashboard.com
 Description: RippleWP is a responsive, multipurpose WordPress theme designed especially for associations, chambers of commerce and membership organizations. This theme is built for simplicity and ease of use. It has a clean, professional look that will make your site stand out. RippleWP works with the Chamber Dashboard suite of plugins to add features most used by membership organizations such as welcoming new members, featuring upcoming events, recognizing sponsors, as well as helping you create a robust Business Directory for your site. 
 Version: 1.0.0
-Tested up to: 5.4
-Requires PHP: 5.6
+Tested up to: 5.6
+Requires at least: 5.0
+Requires PHP: 7.0
 License: GNU General Public License v2 or later
 License URI: LICENSE
 Text Domain: ripple-wp
-Tags: custom-background, custom-logo, custom-menu, featured-images, threaded-comments, translation-ready, Gutenberg block ready, full-width-template, flexible-header, custom-colors, custom-header, flexbox footer-widgets, blog, theme-options, cross-browser compatible, SEO-friendly, rtl-language-support, chamber of commerce, professional membership association, visitor bureau, alumni groups, merchant association, social clubs
+Tags: custom-background, custom-logo, custom-menu, featured-images, threaded-comments, translation-ready, full-width-template, flexible-header, custom-colors, custom-header, blog, theme-options, rtl-language-support
 
 This theme, like WordPress, is licensed under the GPL.
 Use it to make something cool, have fun, and share what you've learned.
@@ -423,9 +423,81 @@ h1.site-title {
 	}
 }
 
-h1 a {
+h1.site-title a {
 	text-decoration: none;
-	color: #d50943;
+	color: #b50143;
+}
+
+h1 {
+	font-weight: 500;
+	font-size: calc(44px + 6*(100vw - 400px)/500);
+	line-height: 1.2em;
+}
+
+@media screen and (min-width: 900px) {
+	h1 {
+		font-size: 50px;
+	}
+}
+
+h2 {
+	font-weight: 600;
+	font-size: calc(32px + 6*(100vw - 400px)/500);
+	line-height: 1.4em;
+}
+
+@media screen and (min-width: 900px) {
+	h2 {
+		font-size: 38px;
+	}
+}
+
+h3 {
+	font-weight: 400;
+	font-size: calc(26px + 6*(100vw - 400px)/500);
+	line-height: 1.2em;
+}
+
+@media screen and (min-width: 900px) {
+	h3 {
+		font-size: 32px;
+	}
+}
+
+h4 {
+	font-weight: 400;
+	font-size: calc(22px + 6*(100vw - 400px)/500);
+	line-height: 1.2em;
+}
+
+@media screen and (min-width: 900px) {
+	h4 {
+		font-size: 28px;
+	}
+}
+
+h5 {
+	font-weight: 400;
+	font-size: calc(18px + 6*(100vw - 400px)/500);
+	line-height: 1.2em;
+}
+
+@media screen and (min-width: 900px) {
+	h5 {
+		font-size: 24px;
+	}
+}
+
+h6 {
+	font-weight: 400;
+	font-size: calc(16px + 6*(100vw - 400px)/500);
+	line-height: 1.2em;
+}
+
+@media screen and (min-width: 900px) {
+	h6 {
+		font-size: 22px;
+	}
 }
 
 p {
@@ -544,19 +616,22 @@ table {
 /* Links
 --------------------------------------------- */
 a {
-	color: #d50943;
+	color: #b50143;
+	text-decoration: none;
 }
 
 a:visited {
-	color: #d50943;
+	color: #b50143;
 }
 
 a:hover, a:focus, a:active {
-	color: #d50943;
+	color: #b50143;
+	text-decoration: underline;
 }
 
 a:focus {
 	outline: thin dotted;
+	text-decoration: underline;
 }
 
 a:hover, a:active {
@@ -710,7 +785,7 @@ textarea {
 	/*margin-top:12px;*/
 	margin-left: 5px;
 	content: "\f106";
-	color: #d50943;
+	color: #b50143;
 }
 
 .main-navigation ul li.menu-item-has-children.focus:after {
@@ -720,7 +795,7 @@ textarea {
 	/*margin-top:12px;*/
 	margin-left: 5px;
 	content: "\f106";
-	color: #d50943;
+	color: #b50143;
 }
 
 .main-navigation ul li.menu-item-has-children ul.sub-menu li.menu-item-has-children:after {
@@ -733,7 +808,7 @@ textarea {
 }
 
 .main-navigation ul li.current-menu-item a, .main-navigation ul li.current_page_ancestor a {
-	color: #d50943;
+	color: #b50143;
 }
 
 .main-navigation ul li.current-menu-item ul li a, .main-navigation ul li.current_page_ancestor ul li a {
@@ -809,7 +884,7 @@ textarea {
 
 .menu-toggle li.focus > a,
 .main-navigation.toggled ul li.focus > a {
-	color: #d50943;
+	color: #b50143;
 }
 
 .menu-toggle li:hover > ul, .menu-toggle li.focus > ul,
@@ -893,7 +968,7 @@ ul#top-menu li {
 
 ul#top-menu li a {
 	text-decoration: none;
-	color: #d50943;
+	color: #b50143;
 	padding-right: 15px;
 	text-transform: uppercase;
 	font-size: 12px;
@@ -908,7 +983,8 @@ ul#top-menu li a {
 
 .post,
 .page {
-	margin: 0 0 1.5em;
+	/*margin: 0 0 1.5em;*/
+	margin: 0px;
 }
 
 .updated:not(.published) {
@@ -1243,7 +1319,7 @@ header.entry-header h1 {
 }
 
 .site-header .left_header .topbar a {
-	color: #d50943;
+	color: #b50143;
 	font-weight: bold;
 }
 
@@ -1252,7 +1328,7 @@ header.entry-header h1 {
 }
 
 .site-header .left_header .topbar ul#top-menu li a {
-	color: #d50943;
+	color: #b50143;
 	font-weight: bold;
 }
 
@@ -1314,10 +1390,6 @@ header.entry-header h1 {
 	}
 }
 
-.site-header .left_header .main-navigation ul ul.sub-menu li ul {
-	/*margin-left:130px;*/
-}
-
 .site-header .left_header .main-navigation.toggled {
 	border: #000 thin solid;
 	position: absolute;
@@ -1365,15 +1437,23 @@ aside h2.widget-title {
 }
 
 .topbar.search .search-form:before, #primary-menu .search-form:before {
-	content: "\f179";
+	font-family: FontAwesome !important;
+	font-weight: 900;
+	content: "\f002";
 	color: #292b26;
 	position: relative;
-	top: 6px;
 	left: 30px;
-	font: normal 20px/1 dashicons !important;
-	content: "\f179";
+	/*font: normal 20px/1 dashicons!important;*/
 	speak: none;
 	-webkit-font-smoothing: antialiased;
+}
+
+.topbar.search .search-form:before {
+	top: 2px;
+}
+
+#primary-menu .search-form:before {
+	top: 4px;
 }
 
 .topbar.search .search-field, #primary-menu .search-field {
@@ -1602,6 +1682,10 @@ main {
 	text-transform: uppercase;
 }
 
+.blog .site-main article header.entry-header h2 a:hover {
+	text-decoration: underline;
+}
+
 .blog .site-main article header.entry-header .entry-meta {
 	font-size: 13px;
 	font-style: italic;
@@ -1657,6 +1741,10 @@ main {
 	text-transform: none;
 }
 
+.blog .site-main .grid_layout article header.entry-header h2 a:hover {
+	text-decoration: underline;
+}
+
 .blog .site-main .grid_layout article header.entry-header .entry-meta {
 	font-size: 13px;
 	font-style: italic;
@@ -1694,7 +1782,7 @@ main.site-main .entry-header .author, .archive.site-main .entry-header .author {
 }
 
 main.site-main article, .archive.site-main article {
-	padding: 0px 0px 45px 0px;
+	padding: 0px;
 }
 
 main.site-main article .entry-footer, .archive.site-main article .entry-footer {
@@ -1807,6 +1895,38 @@ button.menu-toggle {
 }
 
 /*Theme Color Styles for Block Editor*/
+.has-theme-color-one-color {
+	color: #5fd3e2;
+}
+
+.has-theme-color-one-background-color {
+	background-color: #5fd3e2;
+}
+
+.has-theme-color-two-color {
+	color: #ffffff;
+}
+
+.has-theme-color-two-background-color {
+	background-color: #ffffff;
+}
+
+.has-accent-color-color {
+	color: #b50143;
+}
+
+.has-accent-color-background-color {
+	background-color: #b50143;
+}
+
+.has-text-color-color {
+	color: #292b26;
+}
+
+.has-text-color-background-color {
+	background-color: #292b26;
+}
+
 /** Adjusting for BD Styles*/
 #businesslist .business .email a, #businesslist .business .categories {
 	overflow-wrap: break-word;
