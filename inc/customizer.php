@@ -180,47 +180,20 @@ function ripple_wp_theme_options($wp_customize){
         'sanitize_callback' => 'ripple_wp_sanitize_choices'
     ) );
 
-    if(ripple_wp_theme_options_active()){
-        $wp_customize->add_control( 'header_font_options', array(
-            'priority'  => 60,
-            'label' => __('Header Font Options', 'ripple-wp'),
-            'section' => 'header_options',
-            'settings' => 'header_font_options',
-            'type' => 'select',
-            'choices' => array(
-                'Open Sans' => __( 'Open Sans', 'ripple-wp' ),
-                'Roboto' => __( 'Roboto', 'ripple-wp' ),
-                'Slabo'   => __('Slabo', 'ripple-wp'),
-                'Oswald'     =>  __('Oswald', 'ripple-wp'),
-                'Cairo'    =>  __('Cairo', 'ripple-wp'),
-                'BioRhyme'    =>  __('BioRhyme', 'ripple-wp'),
-                'Rakkas'    =>  __('Rakkas', 'ripple-wp'),
-                'Prompt'    =>  __('Prompt', 'ripple-wp'),
-                'IBM Plex Serif'    =>  __('IBM Plex Serif', 'ripple-wp'),
-                'Dancing Script'    =>  __('Dancing Script', 'ripple-wp'),
-                'Qwigley'    =>  __('Qwigley', 'ripple-wp')
-            ),
-        ) );
-    }else{
-        $wp_customize->add_control( 'header_font_options', array(
-            'priority'  => 60,
-            'label' => __('Header Font Options', 'ripple-wp'),
-            'section' => 'header_options',
-            'settings' => 'header_font_options',
-            'type' => 'select',
-            'choices' => array(
-                'Open Sans' => __( 'Open Sans', 'ripple-wp' ),
-                'Roboto' => __( 'Roboto', 'ripple-wp' ),
-                'Slabo'   => __('Slabo', 'ripple-wp'),
-                'Oswald'     =>  __('Oswald', 'ripple-wp'),
-                'Cairo'    =>  __('Cairo', 'ripple-wp'),
-                'BioRhyme'    =>  __('BioRhyme', 'ripple-wp'),
-                'Rakkas'    =>  __('Rakkas', 'ripple-wp')
-            ),
-        ) );
+    $font_choices = ripple_wp_font_choices();
+    if (ripple_wp_theme_options_active()) {
+        $font_choices_pro = rwp_to_font_choices();
+        $font_choices = array_merge($font_choices, $font_choices_pro);
     }
 
-    
+    $wp_customize->add_control( 'header_font_options', array(
+        'priority'  => 60,
+        'label' => __('Header Font Options', 'ripple-wp'),
+        'section' => 'header_options',
+        'settings' => 'header_font_options',
+        'type' => 'select',
+        'choices' => $font_choices
+    ) );
 }
 add_action( 'customize_register', 'ripple_wp_theme_options' );
 
@@ -667,3 +640,15 @@ function ripple_wp_sanitize_checkbox( $input ){
     return ( ( isset( $input ) && true == $input ) ? true : false );
 }
 
+function ripple_wp_font_choices(){
+    $font_choices = array(
+        'Open Sans' => __( 'Open Sans', 'ripple-wp' ),
+        'Roboto' => __( 'Roboto', 'ripple-wp' ),
+        'Slabo'   => __('Slabo', 'ripple-wp'),
+        'Oswald'     =>  __('Oswald', 'ripple-wp'),
+        'Cairo'    =>  __('Cairo', 'ripple-wp'),
+        'BioRhyme'    =>  __('BioRhyme', 'ripple-wp'),
+        'Rakkas'    =>  __('Rakkas', 'ripple-wp')
+    );
+    return $font_choices;
+}
