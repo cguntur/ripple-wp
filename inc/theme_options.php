@@ -153,19 +153,20 @@ function ripple_wp_welcome(){
 }
 
 function ripple_wp_theme_info(){
+    $customizer_url = esc_url('customize.php');
     ?>
     <div class="ripple_wp_tab_content">
         <h3><?php echo __('Theme Customizer', 'ripple-wp'); ?></h3>
         <p><?php echo __('All the theme options are available via the Theme Customizer.', 'ripple-wp'); ?></p>
-        <a class=" button primary" href-"">Customize My Theme</a>
+        <a class=" button primary" href="<?php echo $customizer_url; ?>">Customize My Theme</a>
         <br />
         <h3><?php echo __('Documentation', 'ripple-wp'); ?></h3>
         <p><?php echo __('Please refer to the theme documentation for step-by-step instructions.', 'ripple-wp'); ?></p>
-        <a class=" button primary" href-"">Theme Documentation</a>
+        <a class=" button primary" href="https://chamberdashboard.com/docs/wordpress-themes/" target="_blank">Theme Documentation</a>
         <br />
         <h3><?php echo __('Get Support', 'ripple-wp'); ?></h3>
         <p><?php echo __('Visit our documentation library or submit your question to our support team.', 'ripple-wp'); ?></p>
-        <a class=" button primary" href-"">Customer Support</a>
+        <a class=" button primary" href="customer support: https://chamberdashboard.com/chamber-dashboard-support/" target="_blank">Customer Support</a>
     </div>
     <?php
 }

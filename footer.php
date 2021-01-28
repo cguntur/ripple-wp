@@ -18,7 +18,7 @@
 	<?php } ?>
     </div>
 	<footer id="colophon" class="site-footer">
-    <div class="footer-widgets">
+        <div class="footer-widgets">
 			<?php if ( is_active_sidebar( 'footer-widget-1' ) ) { ?>
                 <div class="widget-column">
 					<?php dynamic_sidebar( 'footer-widget-1' ); ?>
@@ -39,7 +39,7 @@
 					<?php dynamic_sidebar( 'footer-widget-4' ); ?>
                 </div>
 			<?php }	?>
-		</div>
+	    </div>
 		<div class="site-info">
             <?php 
                 $copyright_message = get_theme_mod('show_copyright', '&copy; 2020 ' . get_bloginfo('name')); ?>

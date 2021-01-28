@@ -53,7 +53,7 @@ if(!is_front_page() && !$hide_page_title){
 					wp_kses_post( get_the_title() )
 				),
 				'<span class="edit-link">',
-				'</span>'
+                '</span>'
 			);
 			?>
 		</footer><!-- .entry-footer -->

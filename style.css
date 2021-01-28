@@ -731,6 +731,22 @@ textarea {
 --------------------------------------------------------------*/
 /* Navigation
 --------------------------------------------- */
+#primary-menu.mobile_menu {
+	display: none;
+}
+
+@media (min-width: 768px) {
+	#primary-menu.mobile_menu {
+		display: flex;
+	}
+}
+
+@media (min-width: 768px) {
+	#mobile-menu {
+		display: none;
+	}
+}
+
 .main-navigation {
 	display: block;
 	width: 100%;
@@ -774,7 +790,7 @@ textarea {
 @media screen and (min-width: 768px) {
 	.main-navigation ul li.menu-item-has-children:after {
 		/*margin-top:15px;*/
-		top: 25%;
+		top: 30%;
 	}
 }
 
@@ -1294,7 +1310,40 @@ header.entry-header h1 {
 	position: relative;
 }
 
+.site-header.sticky_header {
+	position: fixed;
+	width: 100%;
+}
+
+.site-header.sticky_header .topbar {
+	display: none;
+}
+
 /** Styles for the second header layout*/
+.site-header.sticky_header .logo_menu_wrapper .site-branding h1.site-title {
+	font-size: 1rem;
+}
+
+.site-header.sticky_header .logo_menu_wrapper .site-branding .site-description {
+	font-size: 1rem;
+}
+
+.site-header.sticky_header .logo_menu_wrapper .site-branding img {
+	width: 60%;
+}
+
+.site-header.sticky_header .site-branding h1.site-title {
+	font-size: 25px;
+}
+
+.site-header.sticky_header .site-branding .site-description {
+	font-size: 14px;
+}
+
+.site-header.sticky_header .site-branding img {
+	width: 60%;
+}
+
 .site-header .left_header {
 	/*display: grid;
         grid-template-columns: 2fr 3fr;*/
@@ -1720,6 +1769,18 @@ main {
 	grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
 }
 
+.blog .site-main .grid_layout.two {
+	grid-template-columns: repeat(2, 1fr);
+}
+
+.blog .site-main .grid_layout.three {
+	grid-template-columns: repeat(3, 1fr);
+}
+
+.blog .site-main .grid_layout.four {
+	grid-template-columns: repeat(4, 1fr);
+}
+
 .blog .site-main .grid_layout article {
 	border-bottom: none;
 	padding: 15px;
@@ -1763,7 +1824,7 @@ main {
 	font-weight: 600;
 }
 
-.blog .site-main .grid_layout article .entry-footer .comments-link, .blog .site-main .grid_layout article .entry-footer .tags-links {
+.blog .site-main .grid_layout article .entry-footer .comments-link {
 	display: none;
 }
 

@@ -207,11 +207,51 @@ header{
     &.no_header_image{
         position:relative;
     }
+
+    &.sticky_header{
+        position:fixed;
+        width:100%;
+
+        .topbar{
+            display:none;
+        }
+    }
 }
 
 /** Styles for the second header layout*/ 
 
 .site-header{
+    &.sticky_header{
+        .logo_menu_wrapper{
+            .site-branding{
+                h1.site-title{
+                    font-size:1rem;
+                }
+
+                .site-description{
+                    font-size:1rem;
+                }
+                img{
+                    width:60%
+                }
+            }
+        }
+    }
+
+    &.sticky_header{
+        .site-branding{
+            h1.site-title{
+                font-size:25px;
+            }
+
+            .site-description{
+                font-size:14px;
+            }
+            img{
+                width:60%
+            }
+        }
+    }
     .left_header{
         /*display: grid;
         grid-template-columns: 2fr 3fr;*/
@@ -670,6 +710,16 @@ main{
             display:grid;
             grid-template-columns: repeat( auto-fill, minmax(300px, 1fr) );
 
+            &.two{
+                grid-template-columns: repeat(2, 1fr);
+            }
+            &.three{
+                grid-template-columns: repeat(3, 1fr);
+            }
+            &.four{
+                grid-template-columns: repeat(4, 1fr);
+            }
+
             article{
                 border-bottom:none;
                 padding:15px;
@@ -707,7 +757,7 @@ main{
                     .cat-links a{
                         font-weight: 600;
                     }
-                    .comments-link, .tags-links{
+                    .comments-link{
                         display:none;
                     }
                 }
@@ -895,7 +945,6 @@ button.menu-toggle{
     background-color:$color__text-main;
 
 }
-
 
 /** Adjusting for BD Styles*/
 

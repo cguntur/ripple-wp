@@ -115,6 +115,7 @@ function ripple_wp_theme_options($wp_customize){
     ) );
 
     $wp_customize->add_control( 'header_layout_options', array(
+        'priority'  => 10,
         'label' => __('Header Layout Options', 'ripple-wp'),
         'section' => 'header_options',
         'settings' => 'header_layout_options',
@@ -132,6 +133,7 @@ function ripple_wp_theme_options($wp_customize){
     ) );
 
     $wp_customize->add_control( 'transparent_header', array(
+        'priority'  => 20,
         'label' => 'Make the header image transparent',
         'section' => 'header_options',
         'settings' => 'transparent_header',
@@ -146,6 +148,7 @@ function ripple_wp_theme_options($wp_customize){
     ) );
 
     $wp_customize->add_control( 'show_topbar', array(
+        'priority'  => 40,
         'label' => 'Show Top Bar',
         'section' => 'header_options',
         'settings' => 'show_topbar',
@@ -159,6 +162,7 @@ function ripple_wp_theme_options($wp_customize){
     ) );
 
     $wp_customize->add_control( 'add_search_icon', array(
+        'priority'  => 50,
         'label' => 'Add search option to the top bar',
         'section' => 'header_options',
         'settings' => 'add_search_icon',
@@ -176,24 +180,49 @@ function ripple_wp_theme_options($wp_customize){
         'sanitize_callback' => 'ripple_wp_sanitize_choices'
     ) );
 
-    $wp_customize->add_control( 'header_font_options', array(
-        'label' => __('Header Font Options', 'ripple-wp'),
-        'section' => 'header_options',
-        'settings' => 'header_font_options',
-        'type' => 'select',
-        'choices' => array(
-            'Open Sans' => __( 'Open Sans', 'ripple-wp' ),
-            'Roboto' => __( 'Roboto', 'ripple-wp' ),
-            'Slabo'   => __('Slabo', 'ripple-wp'),
-            'Oswald'     =>  __('Oswald', 'ripple-wp'),
-            'Cairo'    =>  __('Cairo', 'ripple-wp'),
-            'BioRhyme'    =>  __('BioRhyme', 'ripple-wp'),
-            'Rakkas'    =>  __('Rakkas', 'ripple-wp')
-          ),
-    ) );
+    if(ripple_wp_theme_options_active()){
+        $wp_customize->add_control( 'header_font_options', array(
+            'priority'  => 60,
+            'label' => __('Header Font Options', 'ripple-wp'),
+            'section' => 'header_options',
+            'settings' => 'header_font_options',
+            'type' => 'select',
+            'choices' => array(
+                'Open Sans' => __( 'Open Sans', 'ripple-wp' ),
+                'Roboto' => __( 'Roboto', 'ripple-wp' ),
+                'Slabo'   => __('Slabo', 'ripple-wp'),
+                'Oswald'     =>  __('Oswald', 'ripple-wp'),
+                'Cairo'    =>  __('Cairo', 'ripple-wp'),
+                'BioRhyme'    =>  __('BioRhyme', 'ripple-wp'),
+                'Rakkas'    =>  __('Rakkas', 'ripple-wp'),
+                'Prompt'    =>  __('Prompt', 'ripple-wp'),
+                'IBM Plex Serif'    =>  __('IBM Plex Serif', 'ripple-wp'),
+                'Dancing Script'    =>  __('Dancing Script', 'ripple-wp'),
+                'Qwigley'    =>  __('Qwigley', 'ripple-wp')
+            ),
+        ) );
+    }else{
+        $wp_customize->add_control( 'header_font_options', array(
+            'priority'  => 60,
+            'label' => __('Header Font Options', 'ripple-wp'),
+            'section' => 'header_options',
+            'settings' => 'header_font_options',
+            'type' => 'select',
+            'choices' => array(
+                'Open Sans' => __( 'Open Sans', 'ripple-wp' ),
+                'Roboto' => __( 'Roboto', 'ripple-wp' ),
+                'Slabo'   => __('Slabo', 'ripple-wp'),
+                'Oswald'     =>  __('Oswald', 'ripple-wp'),
+                'Cairo'    =>  __('Cairo', 'ripple-wp'),
+                'BioRhyme'    =>  __('BioRhyme', 'ripple-wp'),
+                'Rakkas'    =>  __('Rakkas', 'ripple-wp')
+            ),
+        ) );
+    }
+
+    
 }
 add_action( 'customize_register', 'ripple_wp_theme_options' );
-
 
 /**Ripple WP Theme Footer Options */
 function ripple_wp_theme_footer_options($wp_customize){
@@ -249,6 +278,7 @@ function ripple_wp_theme_blog_options($wp_customize){
     ) );
 
     $wp_customize->add_control( 'blog_content_categories', array(
+        'priority'    => 30,
         'label' => __('Show categories on blog page', 'ripple-wp'),
         'section' => 'blog_options',
         'settings' => 'blog_content_categories',
@@ -262,6 +292,7 @@ function ripple_wp_theme_blog_options($wp_customize){
     ) );
 
     $wp_customize->add_control( 'blog_content_tags', array(
+        'priority'    => 30,
         'label' => __('Show tags on blog page', 'ripple-wp'),
         'section' => 'blog_options',
         'settings' => 'blog_content_tags',
@@ -275,6 +306,7 @@ function ripple_wp_theme_blog_options($wp_customize){
     ) );
 
     $wp_customize->add_control( 'blog_content_author', array(
+        'priority'    => 30,
         'label' => __('Show author on blog page', 'ripple-wp'),
         'section' => 'blog_options',
         'settings' => 'blog_content_author',
@@ -428,6 +460,15 @@ function ripple_wp_customize_preview_js() {
 }
 add_action( 'customize_preview_init', 'ripple_wp_customize_preview_js' );
 
+function ripple_wp_theme_options_customizer(){
+    $plugins_url = plugins_url();
+    wp_enqueue_script( 'ripple-wp-customizer', $plugins_url . '/ripple-wp-theme-options/js/customizer_pro.js', array( 'customize-preview' ), _S_VERSION, true );
+}
+
+$active_plugins = ripple_wp_get_active_plugin_list();
+if( in_array( 'ripple-wp-theme-options.php', $active_plugins )){
+    add_action( 'customize_preview_init', 'ripple_wp_theme_options_customizer' );
+}
 
 function ripple_wp_theme_get_customizer_css() {
     $text_color = get_theme_mod( 'text_color', '' );
@@ -436,15 +477,28 @@ function ripple_wp_theme_get_customizer_css() {
     $header_bck_color = get_theme_mod('header_color');
     $menu_bck_color = get_theme_mod('menu_bck_color', '');
     $menu_text_color = get_theme_mod('menu_text_color');
-    $font_option = get_theme_mod('header_font_options');
+    if(ripple_wp_theme_options_active()){
+        $font_option = get_theme_mod('header_font_options');
+    }else{
+        $font_option = get_theme_mod('header_font_options');
+    }
+    if(get_theme_mod('header_font_options' == '')){
+        $font_option = 'Open Sans';
+    }
+    
     //$remove_menu_bck_color = get_theme_mod('menu_bck_color');
+    
+    $active_plugins = ripple_wp_get_active_plugin_list();
+    if( in_array( 'ripple-wp-theme-options.php', $active_plugins ) ){
+        ripple_wp_theme_options_customizer_css();    
+    }
     ?>
     <style type="text/css">
     body, input, select, optgroup, textarea {
         color: <?php echo $text_color; ?>
     }
 
-    p a, p a:visited, p a:hover, p a:focus, p a:active, span a, span a:visited, span a:hover, span a:focus, span a:active, #primary-menu li a:hover, #primary-menu li a:focus, #primary-menu li a:active, #primary-menu ul li.current-menu-item a, #primary-menu li.menu-item-has-children:hover:after, #primary-menu li.menu-item-has-children.focus:after, .has-accent-color-color, .topbar ul#top-menu li a, .main-navigation.toggled ul li.focus > a, li a, h1 a, h2 a, h3 a, h4 a, h5 a, h6 a, a:hover, a:focus, a:visited{
+    p a, p a:visited, p a:hover, p a:focus, p a:active, span a, span a:visited, span a:hover, span a:focus, span a:active, #primary-menu li a:hover, #primary-menu li a:focus, #primary-menu li a:active, #primary-menu ul li.current-menu-item a, #primary-menu li.menu-item-has-children:hover:after, #primary-menu li.menu-item-has-children.focus:after, .has-accent-color-color, .main-navigation.toggled ul li.focus > a, li a, h1 a, h2 a, h3 a, h4 a, h5 a, h6 a, a:hover, a:focus, a:visited{
         color: <?php echo $accent_color; ?>;
     }
 
@@ -452,7 +506,7 @@ function ripple_wp_theme_get_customizer_css() {
         background: <?php echo $accent_color; ?>
     }
 
-    .main-navigation ul li.current-menu-item a,.main-navigation ul li.current_page_ancestor a, #top-menu li a{
+    .main-navigation ul li.current-menu-item a,.main-navigation ul li.current_page_ancestor a{
         color: <?php echo $accent_color; ?>
     }
 
@@ -460,7 +514,7 @@ function ripple_wp_theme_get_customizer_css() {
         background: <?php echo $top_bar_footer_color; ?>
     }
 
-    header.site-header{
+    header.site-header, .site-header .left_header .main-navigation ul ul{
         background: <?php echo $header_bck_color; ?>
     }
 
@@ -521,6 +575,53 @@ function ripple_wp_theme_get_customizer_css() {
     <?php
   }
   add_action( 'wp_head', 'ripple_wp_theme_get_customizer_css' );
+
+  function ripple_wp_theme_options_customizer_css(){
+    ripple_wp_accent_color_two();  
+    ripple_wp_footer_text_color();
+  }
+
+  function ripple_wp_accent_color_two(){
+    if(get_theme_mod('accent_color_two')){
+        //your code
+        $accent_color_two = get_theme_mod('accent_color_two');
+        ?>
+        <style type="text/css">
+        .topbar ul#top-menu li a, footer.site-footer a, footer .site-info a, footer .site-info .wp_prop a, .site-info .theme_author_prop a{
+            color: <?php echo $accent_color_two; ?>
+        }
+        </style>
+        <?php
+    }else{
+        //your code
+        ?>
+        <style type="text/css">
+        .topbar ul#top-menu li a, footer.site-footer a{
+            color: <?php echo $accent_color; ?>
+        }
+        </style>
+        <?php
+    }
+  }
+
+  function ripple_wp_footer_text_color(){
+    if(get_theme_mod('footer_text_color')){
+        $footer_text_color = get_theme_mod('footer_text_color');
+        ?>
+        <style type="text/css">
+        footer.site-footer{
+            color: <?php echo $footer_text_color; ?>
+        }
+        <?php
+    }else{
+        ?>
+        <style type="text/css">
+        footer.site-footer{
+            color: <?php echo $text_color; ?>
+        }
+        <?php 
+    }
+  }
 
   /**
  * Sanitize font options

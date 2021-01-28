@@ -26,9 +26,24 @@ get_header();
         endif;
         ?>
 	<main id="primary" class="site-main <?php if(get_theme_mod('blog_page_layout') == 'grid') echo "grid"; ?>">
+        <?php
+        $columns = "";
+        if(ripple_wp_theme_options_active()){
+            $grid_columns = get_theme_mod('grid_columns');
+            if($grid_columns == 'two_columns'){
+                $columns = "two";
+            }else if($grid_columns == 'three_columns'){
+                $columns = "three";
+            }else if($grid_columns == 'four_columns'){
+                $columns = "four";
+            }else{
+                $columns = "";
+            }
+        }
+        ?>
         <?php if(get_theme_mod('blog_page_layout') == "grid"){
             ?>
-            <div class="grid_layout">
+            <div class="grid_layout <?php echo $columns; ?>">
             <?php
         }
         ?>

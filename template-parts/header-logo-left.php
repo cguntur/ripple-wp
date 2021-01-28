@@ -6,7 +6,7 @@ if ( !get_header_image() ){
 <header id="masthead" class="site-header sec_bck  <?php if(get_theme_mod('transparent_header') ) echo transparent_header; ?> <?php echo $class; ?>">
     <div class="left_header">
         <?php wp_ripple_topbar(); ?>
-        <div class="logo_menu_wrapper">
+        <div id="logo_menu_wrapper" class="logo_menu_wrapper">
             <div class="wrapper">
                 <div class="site-branding">
                     <?php

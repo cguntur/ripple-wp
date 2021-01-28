@@ -71,7 +71,7 @@ if ( ! function_exists( 'ripple_wp_entry_footer' ) ) :
 			
             if ( true == get_theme_mod( 'blog_content_tags', true ) ){
                 /* translators: used between list items, there is a space after the comma */
-                $tags_list = get_the_tag_list( '', esc_html_x( ', ', 'list item separator', 'ripple-wp' ) );
+                $tags_list = get_the_tag_list( '', esc_html( ', ', 'ripple-wp' ) );
                 if ( $tags_list ) {
                     /* translators: 1: list of tags. */
                     printf( '<span class="tags-links">' . esc_html__( 'Tagged %1$s', 'ripple-wp' ) . '</span>', $tags_list ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped

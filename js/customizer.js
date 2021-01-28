@@ -87,7 +87,7 @@
     //Header Background Color
     wp.customize( 'header_color', function( value ) {
 		value.bind( function( to ) {
-				$( 'header.site-header, .has-theme-color-two-background-color' ).css( {
+				$( 'header.site-header, .has-theme-color-two-background-color, .site-header .left_header .main-navigation ul ul' ).css( {
 					background: to,
                 } );
                 

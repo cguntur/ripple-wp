@@ -593,3 +593,22 @@ function ripple_wp_admin_notice_ignore() {
 	}
 }
 add_action('admin_init', 'ripple_wp_admin_notice_ignore');
+
+function ripple_wp_get_active_plugin_list() {
+    $active_plugins = wp_get_active_and_valid_plugins();
+    $plugin_names = array();
+    foreach( $active_plugins as $plugin ) {
+        $plugin_names[] = substr($plugin, strrpos($plugin, '/') + 1);
+    }
+
+    return $plugin_names;
+}
+
+function ripple_wp_theme_options_active(){
+    $active_plugins = ripple_wp_get_active_plugin_list();
+    if( in_array( 'ripple-wp-theme-options.php', $active_plugins )){
+        return true;
+    }else{
+        return false;
+    }
+}
