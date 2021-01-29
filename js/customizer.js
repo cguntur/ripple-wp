@@ -60,9 +60,15 @@
 				$( 'input[type="button"], input[type="reset"], input[type="submit"], .has-accent-color-background-color' ).css( {
 					background: to,
                 } );
-                /*$('p a, p a:visited, p a:hover, p a:focus, p a:active, span a, span a:visited, span a:hover, span a:focus, span a:active, .has-accent-color-color, footer li a, .topbar ul li a, a, a:hover, a:focus, a:visited, a:active').css({
-                    color: to,
-                });*/
+                $('.has-accent-color-color, a:hover, a:focus, a:active, a:visited, h1 a, h2 a, h3 a, h4 a, h5 a, h6 a, span a, p a').css({
+                    color:to,
+                });
+                $('.site-header .left_header .topbar ul#top-menu li a').css({
+                    color:to,
+                });
+                $('footer li a, footer .widget-column ul li a, .site-info a').css({
+                    color:to,
+                });
                 
             }
 		);

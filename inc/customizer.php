@@ -481,17 +481,24 @@ function ripple_wp_theme_get_customizer_css() {
         color: <?php echo $menu_text_color; ?>
     }
 
-    /*body,
-    input,
-    select,
-    optgroup,
-    textarea,
-    p {
-        font-family: <?php //echo $font_option; ?>
-    }*/
-
     h1, h2, h3, h4, h5, h6 {
         font-family: <?php echo $font_option; ?>
+    }
+
+    .has-accent-color-color, a:hover, a:focus, a:active, a:visited, a, h1 a, h2 a, h3 a, h4 a, h5 a, h6 a, span a, p a{
+        color: <?php echo $accent_color; ?>
+    }
+
+    .site-header .left_header .topbar ul#top-menu li a{
+        color: <?php echo $accent_color; ?>
+    }
+
+    footer li a, footer .widget-column ul li a{
+        color: <?php echo $accent_color; ?>
+    }
+
+    .site-info a{
+        color: <?php echo $accent_color; ?>
     }
 
     .has-text-color-background-color{
