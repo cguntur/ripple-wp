@@ -63,9 +63,9 @@
                 /*$('a, a:visited, a:hover, a:focus, a:active, #primary-menu ul li.current-menu-item a').css({
                     color: to,
                 });*/
-                $('p a, p a:visited, p a:hover, p a:focus, p a:active, span a, span a:visited, span a:hover, span a:focus, span a:active, #primary-menu li a:hover, #primary-menu li a:focus, #primary-menu li a:active, #primary-menu ul li.current-menu-item a, #primary-menu li.menu-item-has-children:hover:after, #primary-menu li.menu-item-has-children.focus:after, .has-accent-color-color, .topbar ul#top-menu li a, .main-navigation.toggled ul li.focus > a, li a, h1 a, h2 a, h3 a, h4 a, h5 a, h6 a, a:hover, a:focus, a:visited').css({
+                $('p a, p a:visited, p a:hover, p a:focus, p a:active, span a, span a:visited, span a:hover, span a:focus, span a:active, #primary-menu li a:hover, #primary-menu li a:focus, #primary-menu li a:active, #primary-menu ul li.current-menu-item a, #primary-menu li.menu-item-has-children:hover:after, #primary-menu li.menu-item-has-children.focus:after, .has-accent-color-color, .topbar ul#top-menu li a, .main-navigation.toggled ul li.focus > a, li a, h1 a, h2 a, h3 a, h4 a, h5 a, h6 a, a:hover, a:focus, a:visited, .site-header .left_header .topbar ul#top-menu li a').css({
                 color: to,
-                })
+                });
             }
 		);
     } );

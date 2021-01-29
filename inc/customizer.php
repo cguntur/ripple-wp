@@ -475,6 +475,10 @@ function ripple_wp_theme_get_customizer_css() {
         color: <?php echo $accent_color; ?>;
     }
 
+    .site-header .left_header .topbar ul#top-menu li a{
+        color: <?php echo $accent_color; ?>;
+    }
+
     button, input[type="button"], input[type="reset"], input[type="submit"]{
         background: <?php echo $accent_color; ?>
     }
