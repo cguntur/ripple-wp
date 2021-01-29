@@ -450,41 +450,20 @@ function ripple_wp_theme_get_customizer_css() {
     $header_bck_color = get_theme_mod('header_color');
     $menu_bck_color = get_theme_mod('menu_bck_color', '');
     $menu_text_color = get_theme_mod('menu_text_color');
-    if(ripple_wp_theme_options_active()){
-        $font_option = get_theme_mod('header_font_options');
-    }else{
-        $font_option = get_theme_mod('header_font_options');
-    }
+    $font_option = get_theme_mod('header_font_options');
+
     if(get_theme_mod('header_font_options' == '')){
         $font_option = 'Open Sans';
     }
     
-    //$remove_menu_bck_color = get_theme_mod('menu_bck_color');
-    
-    $active_plugins = ripple_wp_get_active_plugin_list();
-    if( in_array( 'ripple-wp-theme-options.php', $active_plugins ) ){
-        ripple_wp_theme_options_customizer_css();    
-    }
     ?>
     <style type="text/css">
     body, input, select, optgroup, textarea {
         color: <?php echo $text_color; ?>
     }
 
-    p a, p a:visited, p a:hover, p a:focus, p a:active, span a, span a:visited, span a:hover, span a:focus, span a:active, #primary-menu li a:hover, #primary-menu li a:focus, #primary-menu li a:active, #primary-menu ul li.current-menu-item a, #primary-menu li.menu-item-has-children:hover:after, #primary-menu li.menu-item-has-children.focus:after, .has-accent-color-color, .main-navigation.toggled ul li.focus > a, li a, h1 a, h2 a, h3 a, h4 a, h5 a, h6 a, a:hover, a:focus, a:visited{
-        color: <?php echo $accent_color; ?>;
-    }
-
-    .site-header .left_header .topbar ul#top-menu li a{
-        color: <?php echo $accent_color; ?>;
-    }
-
     button, input[type="button"], input[type="reset"], input[type="submit"]{
         background: <?php echo $accent_color; ?>
-    }
-
-    .main-navigation ul li.current-menu-item a,.main-navigation ul li.current_page_ancestor a{
-        color: <?php echo $accent_color; ?>
     }
 
     .topbar, footer.site-footer{
@@ -552,53 +531,6 @@ function ripple_wp_theme_get_customizer_css() {
     <?php
   }
   add_action( 'wp_head', 'ripple_wp_theme_get_customizer_css' );
-
-  function ripple_wp_theme_options_customizer_css(){
-    ripple_wp_accent_color_two();  
-    ripple_wp_footer_text_color();
-  }
-
-  function ripple_wp_accent_color_two(){
-    if(get_theme_mod('accent_color_two')){
-        //your code
-        $accent_color_two = get_theme_mod('accent_color_two');
-        ?>
-        <style type="text/css">
-        .topbar ul#top-menu li a, footer.site-footer a, footer .site-info a, footer .site-info .wp_prop a, .site-info .theme_author_prop a{
-            color: <?php echo $accent_color_two; ?>
-        }
-        </style>
-        <?php
-    }else{
-        //your code
-        ?>
-        <style type="text/css">
-        .topbar ul#top-menu li a, footer.site-footer a{
-            color: <?php echo $accent_color; ?>
-        }
-        </style>
-        <?php
-    }
-  }
-
-  function ripple_wp_footer_text_color(){
-    if(get_theme_mod('footer_text_color')){
-        $footer_text_color = get_theme_mod('footer_text_color');
-        ?>
-        <style type="text/css">
-        footer.site-footer{
-            color: <?php echo $footer_text_color; ?>
-        }
-        <?php
-    }else{
-        ?>
-        <style type="text/css">
-        footer.site-footer{
-            color: <?php echo $text_color; ?>
-        }
-        <?php 
-    }
-  }
 
   /**
  * Sanitize font options
