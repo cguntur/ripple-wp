@@ -1,4 +1,19 @@
 table {
 	margin: 0 0 1.5em;
 	width: 100%;
+    border:$color__text-screen thin solid;
+    border-collapse: collapse;
+    text-align: center;
+
+    tr{
+        border-collapse: collapse;
+        border-bottom: $color__text-screen thin solid;
+
+        th{
+            padding: 2% 1%;
+        }
+        td{
+            padding: 1%;
+        }
+    }
 }

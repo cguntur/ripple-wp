@@ -281,7 +281,7 @@ function ripple_wp_set_theme_colors_for_editor(){
             background-color: <?php echo $theme_color_one; ?>
         }
 
-        .has-theme-color-one-color{
+        .has-theme-color-one-color, .has-theme-color-one-color.has-text-color{
             color: <?php echo $theme_color_one; ?>
         }
 
@@ -300,7 +300,37 @@ function ripple_wp_set_theme_colors_for_editor(){
 function ripple_wp_google_fonts(){
     $font_option = get_theme_mod('header_font_options');
 
-    switch ($font_option) {
+    if(ripple_wp_theme_options_active()){
+        $body_font = get_theme_mod('body_font_options');
+    }else{
+        $body_font = "Open Sans";
+    }
+
+    if($font_option == "Roboto" || $body_font == "Roboto"){
+        wp_enqueue_style('roboto', 'https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet"', array(), _S_VERSION);
+    }
+
+    if($font_option == "Slabo" || $body_font == "Slabo"){
+        wp_enqueue_style('slabo', 'https://fonts.googleapis.com/css2?family=Slabo+27px&display=swap" rel="stylesheet"', array(), _S_VERSION);
+    }
+
+    if($font_option == "Oswald" || $body_font == "Oswald"){
+        wp_enqueue_style('oswald', 'https://fonts.googleapis.com/css2?family=Oswald:wght@200;300;400;500;600;700&display=swap" rel="stylesheet"', array(), _S_VERSION);
+    }
+
+    if($font_option == "Cairo" || $body_font == "Cairo"){
+        wp_enqueue_style('cairo', 'https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;600;700;900&display=swap" rel="stylesheet"', array(), _S_VERSION);
+    }
+
+    if($font_option == "BioRhyme" || $body_font == "BioRhyme"){
+        wp_enqueue_style('biorhyme', 'https://fonts.googleapis.com/css2?family=BioRhyme:wght@200;300;400;700&display=swap" rel="stylesheet"', array(), _S_VERSION);
+    }
+
+    if($font_option == "Rakkas" || $body_font == "Rakkas"){
+        wp_enqueue_style('rakkas', 'https://fonts.googleapis.com/css2?family=Rakkas&display=swap" rel="stylesheet"', array(), _S_VERSION);
+    }
+
+    /*switch ($font_option) {
         case 'Roboto':
             wp_enqueue_style('roboto', 'https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet"', array(), _S_VERSION);
         break;
@@ -319,7 +349,7 @@ function ripple_wp_google_fonts(){
         case 'Rakkas':
             wp_enqueue_style('rakkas', 'https://fonts.googleapis.com/css2?family=Rakkas&display=swap" rel="stylesheet"', array(), _S_VERSION);
         break;
-    }
+    }*/
 }
 add_action( 'wp_enqueue_scripts', 'ripple_wp_google_fonts' );
 

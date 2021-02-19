@@ -199,6 +199,7 @@ header{
 }
 
 .site-header{
+    background: $color__background-body;
     &.transparent_header{
         position: absolute;
         width: 100%;
@@ -211,6 +212,7 @@ header{
     &.sticky_header{
         position:fixed;
         width:100%;
+        z-index:1000;
 
         .topbar{
             display:none;
@@ -259,6 +261,7 @@ header{
         .site-branding{
             padding:15px;
 
+
             a{
                 margin-bottom:0px;
             }
@@ -279,12 +282,12 @@ header{
             color:$color__menu_link;
             ul{
                 &#top-menu{
-                    color:$color__menu_link;
+                    //color:$color__menu_link;
 
                     li{
                         a{
-                            color:$color__link; 
-                            font-weight:bold;
+                            //color:$color__link; 
+                            //font-weight:bold;
                         }
                     }
                 }
@@ -342,6 +345,7 @@ header{
             &.toggled{
                 border: #000 thin solid;
                 position: absolute;
+                z-index:1000;
                 background: #fff;
                 margin: 0px;
                 left: 0;
@@ -392,6 +396,7 @@ aside{
 .site-branding{
     text-align:center;
     padding-top:15px;
+    /*background:$color__background-body;*/
 }
 
 /*Search Styles*/ 
@@ -496,7 +501,7 @@ footer{
         }
 
         ul{
-            text-align:left;
+            margin:0px;
 
             li{
                 list-style-type: none;
@@ -911,9 +916,15 @@ button.menu-toggle{
     text-align:center;
 }
 
+.widget_calendar{
+    table{
+        border:none;
+    }
+}
+
 /*Theme Color Styles for Block Editor*/
 
-.has-theme-color-one-color{
+.has-theme-color-one-color, .has-theme-color-one-color.has-text-color{
     color:$color__background-header;
 }
 
@@ -921,7 +932,7 @@ button.menu-toggle{
     background-color: $color__background-header;
 }
 
-.has-theme-color-two-color{
+.has-theme-color-two-color, .has-theme-color-two-color.has-text-color{
     color:$color__background-body;
 }
 
@@ -929,7 +940,7 @@ button.menu-toggle{
     background-color:$color__background-body;
 }
 
-.has-accent-color-color{
+.has-accent-color-color, .has-accent-color-color.has-text-color{
     color:$color__link;
 }
 

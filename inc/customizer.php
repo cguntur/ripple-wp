@@ -103,9 +103,17 @@ add_action( 'customize_register', 'ripple_wp_docs_help_register' );
 /**Ripple WP Theme Header Options */
 
 function ripple_wp_theme_options($wp_customize){
+    $wp_customize->add_panel( 'rwp_theme_options', array(
+        'priority'       => 10,
+        'capability'     => 'edit_theme_options',
+        'theme_supports' => '',
+        'title'          => __('RippleWP Theme Options', 'ripple-wp'),
+        'description'    => '',
+    ) );
     $wp_customize->add_section('header_options' , array(
-        'title'     => __('Theme Options', 'ripple-wp'),
-        'priority'  => 30
+        'title'     => __('Header Options', 'ripple-wp'),
+        'priority'  => 10,
+        'panel'         => 'rwp_theme_options'
     ));
 
     $wp_customize->add_setting( 'header_layout_options' , array(
@@ -174,6 +182,12 @@ function ripple_wp_theme_options($wp_customize){
           ),
     ) );
 
+    $wp_customize->add_section('font_options' , array(
+        'title'     => __('Typography', 'ripple-wp'),
+        'priority'  => 20,
+        'panel'         => 'rwp_theme_options'
+    ));
+
     $wp_customize->add_setting( 'header_font_options' , array(
         'default'     => 'Open Sans',
         'transport'   => 'refresh',
@@ -187,9 +201,9 @@ function ripple_wp_theme_options($wp_customize){
     }
 
     $wp_customize->add_control( 'header_font_options', array(
-        'priority'  => 60,
-        'label' => __('Header Font Options', 'ripple-wp'),
-        'section' => 'header_options',
+        'priority'  => 10,
+        'label' => __('Heading Font', 'ripple-wp'),
+        'section' => 'font_options',
         'settings' => 'header_font_options',
         'type' => 'select',
         'choices' => $font_choices
@@ -200,8 +214,9 @@ add_action( 'customize_register', 'ripple_wp_theme_options' );
 /**Ripple WP Theme Footer Options */
 function ripple_wp_theme_footer_options($wp_customize){
     $wp_customize->add_section('footer_options' , array(
-        'title'     => __('Theme Footer Options', 'ripple-wp'),
-        'priority'  => 150
+        'title'     => __('Footer Options', 'ripple-wp'),
+        'priority'  => 30,
+        'panel'         => 'rwp_theme_options'
     ));
     $bloginfo = get_bloginfo('name');    
     $wp_customize->add_setting( 'show_copyright' , array(
@@ -223,7 +238,8 @@ add_action( 'customize_register', 'ripple_wp_theme_footer_options' );
 function ripple_wp_theme_blog_options($wp_customize){
     $wp_customize->add_section('blog_options' , array(
         'title'     => __('Blog Page Options', 'ripple-wp'),
-        'priority'  => 150
+        'priority'  => 40,
+        'panel'     => 'rwp_theme_options'
     ));
 
     $wp_customize->add_setting( 'blog_page_layout' , array(
@@ -233,7 +249,7 @@ function ripple_wp_theme_blog_options($wp_customize){
     ) );
 
     $wp_customize->add_control( 'blog_page_layout', array(
-        'label' => __('Header Layout Options', 'ripple-wp'),
+        'label' => __('Blog Layout Options', 'ripple-wp'),
         'section' => 'blog_options',
         'settings' => 'blog_page_layout',
         'type' => 'radio',
@@ -306,7 +322,7 @@ function ripple_wp_colors($wp_customize){
     // Accent color
     $wp_customize->add_setting( 'accent_color', array(
       'default'   => '#b50143',
-      'transport' => 'postMessage',
+      'transport' => 'refresh',
       'sanitize_callback' => 'sanitize_hex_color',
     ) );
   
@@ -355,7 +371,7 @@ function ripple_wp_colors($wp_customize){
     // Menu & Section Background color
     $wp_customize->add_setting( 'menu_text_color', array(
         'default'   => '#292b26',
-        'transport' => 'postMessage',
+        'transport' => 'refresh',
         'sanitize_callback' => 'sanitize_hex_color',
     ) );
     
@@ -470,14 +486,14 @@ function ripple_wp_theme_get_customizer_css() {
         background: <?php echo $top_bar_footer_color; ?>
     }
 
-    header.site-header, .site-header .left_header .main-navigation ul ul{
+    header.site-header, .site-header .left_header .main-navigation ul ul, .site-header .left_header .main-navigation.toggled{
         background: <?php echo $header_bck_color; ?>
     }
 
     .main-navigation, .main-navigation ul li:hover > ul, .main-navigation ul li.focus > ul, .main-navigation ul ul{
         background: <?php echo $menu_bck_color; ?>
     }
-    .main-navigation ul li a, .main-navigation ul li.menu-item-object-page.current_page_item ul li a, .main-navigation ul li.menu-item-has-children:after{
+    .main-navigation ul li a, .main-navigation ul li.menu-item-object-page.current_page_item ul li a, .main-navigation ul li.menu-item-has-children:after, .main-navigation ul li.current-menu-item a, .main-navigation ul li.current_page_ancestor a, .main-navigation ul li.menu-item-has-children:hover:after, .menu-toggle li.focus > a, .main-navigation.toggled ul li.focus > a, .main-navigation ul li.menu-item-has-children.focus:after{
         color: <?php echo $menu_text_color; ?>
     }
 
@@ -485,27 +501,34 @@ function ripple_wp_theme_get_customizer_css() {
         font-family: <?php echo $font_option; ?>
     }
 
-    .has-accent-color-color, a:hover, a:focus, a:active, a:visited, a, h1 a, h2 a, h3 a, h4 a, h5 a, h6 a, span a, p a{
+    .has-accent-color-color, .has-accent-color-color.has-text-color, a:hover, a:focus, a:active, a:visited, a, h1 a, h2 a, h3 a, h4 a, h5 a, h6 a, span a, p a{
         color: <?php echo $accent_color; ?>
     }
+    <?php
+    if(!ripple_wp_theme_options_active()){
+        ?>
+        .site-header .left_header .topbar ul#top-menu li a{
+           color: <?php echo $accent_color; ?>
+        }
 
-    .site-header .left_header .topbar ul#top-menu li a{
-        color: <?php echo $accent_color; ?>
+        .site-info a{
+            color: <?php echo $accent_color; ?>
+        }
+        <?php
     }
+?>    
 
-    footer li a, footer .widget-column ul li a{
+    /*footer li a, footer .widget-column ul li a{
         color: <?php echo $accent_color; ?>
-    }
+    }*/
 
-    .site-info a{
-        color: <?php echo $accent_color; ?>
-    }
+    
 
     .has-text-color-background-color{
         background-color: <?php echo $text_color; ?>
     }
 
-    .has-text-color-color{
+    .has-text-color-color, .has-text-color-color.has-text-color{
         color: <?php echo $text_color; ?>
     }
 
@@ -521,7 +544,7 @@ function ripple_wp_theme_get_customizer_css() {
         background-color: <?php echo $top_bar_footer_color; ?>
     }
 
-    .has-theme-color-one-color{
+    .has-theme-color-one-color, .has-theme-color-one-color.has-text-color{
         color: <?php echo $top_bar_footer_color; ?>
     }
 
@@ -529,7 +552,7 @@ function ripple_wp_theme_get_customizer_css() {
         background-color: <?php echo $header_bck_color; ?>
     }
 
-    .has-theme-color-two-color{
+    .has-theme-color-two-color, .has-theme-color-two-color.has-text-color{
         color: <?php echo $header_bck_color; ?>
     }
 
@@ -585,13 +608,13 @@ function ripple_wp_sanitize_checkbox( $input ){
 
 function ripple_wp_font_choices(){
     $font_choices = array(
-        'Open Sans' => __( 'Open Sans', 'ripple-wp' ),
-        'Roboto' => __( 'Roboto', 'ripple-wp' ),
-        'Slabo'   => __('Slabo', 'ripple-wp'),
-        'Oswald'     =>  __('Oswald', 'ripple-wp'),
-        'Cairo'    =>  __('Cairo', 'ripple-wp'),
-        'BioRhyme'    =>  __('BioRhyme', 'ripple-wp'),
-        'Rakkas'    =>  __('Rakkas', 'ripple-wp')
+        'Open Sans' => 'Open Sans',
+        'Roboto' => 'Roboto',
+        'Slabo'   => 'Slabo',
+        'Oswald'     =>  'Oswald',
+        'Cairo'    =>  'Cairo',
+        'BioRhyme'    =>  'BioRhyme',
+        'Rakkas'    =>  'Rakkas'
     );
     return $font_choices;
 }

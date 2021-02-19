@@ -46,17 +46,10 @@
                 <span class="copyright"><?php echo $copyright_message; ?></span>
                 <?php if(!get_theme_mod('hide_theme_prop')){
                 ?>
-                <span class="wp_prop"><a href="<?php echo esc_url( __( 'https://wordpress.org/', 'ripple-wp' ) ); ?>">
-				<?php
-				/* translators: %s: CMS name, i.e. WordPress. */
-				printf( esc_html__( '%s', 'ripple-wp' ), 'WordPress' );
-				?>
-			</a></span>
-            <!--<span class="sep"> | </span>-->
-            <span class="theme_author_prop">
+                <span class="theme_author_prop">
 				<?php
 				/* translators: 1: Theme name, 2: Theme author. */
-				printf( esc_html__( 'Theme: %1$s by %2$s', 'ripple-wp' ), 'RippleWP', '<a href="https://www.chamberdashboard.com">Ripple Creative Solutions</a>' );
+				printf( esc_html__( '%1$s', 'ripple-wp' ), '<a href="https://www.chamberdashboard.com">RippleWP</a> Theme' );
                 ?>
                 </span>
                 <?php

@@ -34,12 +34,32 @@ if ( !get_header_image() ){
                         <!--<svg class="close" width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" xml:space="preserve"></style><path class="st0" d="M1.5 18.3l17-17M1.7 1l17 17" stroke="currentColor" stroke-width="2" /></svg>-->
                     </button>
                     <?php
+
+                    if( ripple_wp_theme_options_active()){
+                        if(has_nav_menu('mobile-menu')){
+                            $class="mobile_menu";
+                        }else{
+                            $class= "";
+                        }
+                    }
+
                     wp_nav_menu(
                         array(
                             'theme_location' => 'primary-menu',
                             'menu_id'        => 'primary-menu',
+                            'menu_class'     => $class 
                         )
                     );
+        
+                    if(has_nav_menu('mobile-menu')){
+                        wp_nav_menu(
+                            array(
+                                'theme_location' => 'mobile-menu',
+                                'menu_id'        => 'mobile-menu',
+                                'menu_class'     => $class
+                            )
+                        );
+                    }
                     ?>
                 </nav><!-- #site-navigation -->   
             </div>

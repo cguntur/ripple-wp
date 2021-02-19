@@ -166,7 +166,7 @@ function ripple_wp_theme_info(){
         <br />
         <h3><?php echo __('Get Support', 'ripple-wp'); ?></h3>
         <p><?php echo __('Visit our documentation library or submit your question to our support team.', 'ripple-wp'); ?></p>
-        <a class=" button primary" href="customer support: https://chamberdashboard.com/chamber-dashboard-support/" target="_blank">Customer Support</a>
+        <a class=" button primary" href="https://chamberdashboard.com/chamber-dashboard-support/" target="_blank">Customer Support</a>
     </div>
     <?php
 }
@@ -177,8 +177,10 @@ function ripple_wp_license(){
         <?php 
             if(is_plugin_active( 'ripple-wp-block-layouts/ripple-wp-block-layouts.php' )){
                 ripple_bl_render_license_key_form(); 
+            }if(is_plugin_active( 'ripple-wp-theme-options/ripple-wp-theme-options.php' )){
+                ripple_to_render_license_key_form();
             }else{
-                echo __('There are no RippleWP addons installed and activated on your site. Visit the site(link on our site) to learn more about our plugins', 'ripple-wp');
+                echo __('There are no RippleWP addons installed and activated on your site. Visit the <a href="https://chamberdashboard.com/docs/wordpress-themes/" target="_blank">site</a> to learn more about our plugins', 'ripple-wp');
             }
         ?>
     </div>
