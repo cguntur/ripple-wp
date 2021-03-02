@@ -486,7 +486,7 @@ footer{
     }
 
     .widget-column {
-        /*flex-basis: 0;*/
+        flex-basis: 0;
         flex-grow: 1;
         padding-left: 15px;
         padding-right: 15px;
@@ -919,6 +919,7 @@ button.menu-toggle{
 .widget_calendar{
     table{
         border:none;
+        text-align:center;
     }
 }
 

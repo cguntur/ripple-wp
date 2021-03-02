@@ -611,22 +611,22 @@ figure {
 table {
 	margin: 0 0 1.5em;
 	width: 100%;
-	border: #292b26 thin solid;
 	border-collapse: collapse;
-	text-align: center;
+	text-align: left;
 }
 
 table tr {
 	border-collapse: collapse;
-	border-bottom: #292b26 thin solid;
 }
 
 table tr th {
 	padding: 2% 1%;
+	border: 1px solid;
 }
 
 table tr td {
 	padding: 1%;
+	border: 1px solid;
 }
 
 /* Links
@@ -660,13 +660,15 @@ button,
 input[type="button"],
 input[type="reset"],
 input[type="submit"], .button, a.button {
+	display: inline-block;
+	padding: 0.6em 1em 0.4em;
 	border: 1px solid;
 	border-color: #e7f1f5 #e7f1f5 #bbb;
 	border-radius: 3px;
 	background: #591B0C;
 	color: #fff;
 	line-height: 1;
-	padding: 0.6em 1em 0.4em;
+	cursor: pointer;
 }
 
 button:hover,
@@ -684,6 +686,10 @@ input[type="reset"]:focus,
 input[type="submit"]:active,
 input[type="submit"]:focus, .button:active, .button:focus, a.button:active, a.button:focus {
 	border-color: #aaa #bbb #bbb;
+}
+
+a.button:hover {
+	color: #fff;
 }
 
 button.menu-toggle {
@@ -1594,7 +1600,7 @@ footer .footer-widgets {
 }
 
 footer .widget-column {
-	/*flex-basis: 0;*/
+	flex-basis: 0;
 	flex-grow: 1;
 	padding-left: 15px;
 	padding-right: 15px;
@@ -1987,6 +1993,7 @@ button.menu-toggle {
 
 .widget_calendar table {
 	border: none;
+	text-align: center;
 }
 
 /*Theme Color Styles for Block Editor*/

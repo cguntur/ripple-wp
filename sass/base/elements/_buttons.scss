@@ -2,13 +2,15 @@ button,
 input[type="button"],
 input[type="reset"],
 input[type="submit"], .button, a.button {
+    display: inline-block;
+    padding: 0.6em 1em 0.4em;
 	border: 1px solid;
 	border-color: $color__border-button;
 	border-radius: 3px;
 	background: $color__background-button;
 	color: #fff;
 	line-height: 1;
-    padding: 0.6em 1em 0.4em;
+    cursor: pointer;
 
 	&:hover {
 		border-color: $color__border-button-hover;
@@ -18,6 +20,10 @@ input[type="submit"], .button, a.button {
 	&:focus {
 		border-color: $color__border-button-focus;
 	}
+}
+
+a.button:hover{
+    color:#fff;
 }
 
 button.menu-toggle{

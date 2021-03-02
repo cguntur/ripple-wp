@@ -192,10 +192,11 @@ function ripple_wp_changelog(){
     <div class="changelog_wrapper">
         <div class="ripple_wp_changelog">
             <h3><?php echo __('Changelog', 'ripple-wp'); ?></h3>
-            <h4><?php echo __('1.0 - Dec 2020', 'ripple-wp'); ?> </h4>
+            <h4><?php echo __('1.0 - Feb 2021', 'ripple-wp'); ?> </h4>
             <p><?php echo __('Initial release', 'ripple-wp'); ?></p>
         </div>
         <div class="ripple_wp_tech_details">
+            <h3><?php echo __('Technical Details', 'ripple-wp'); ?></h3>
                 <?php
                     global $wp_version;
                     $php_version = phpversion();
@@ -206,10 +207,16 @@ function ripple_wp_changelog(){
                 $theme = wp_get_theme();
                 ?>
                 <h4><?php echo __('Active Theme: ', 'ripple-wp') . $theme . " " . $theme->get( 'Version' ); ?></h4>
+                <?php ripplewp_addons_details_hook(); ?>
                 <?php
             ?>
         </div>
     </div>
     <?php
 }
+
+//Creating the custom hook for displaying license form
+function ripplewp_addons_details_hook(){
+    do_action('ripplewp_addons_details_hook');
+  }
 ?>

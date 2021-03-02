@@ -42,9 +42,12 @@
 	    </div>
 		<div class="site-info">
             <?php 
+                if(ripple_wp_theme_options_active() && get_theme_mod('hide_theme_prop')){
+                    $hide_theme_prop = true;
+                }
                 $copyright_message = get_theme_mod('show_copyright', '&copy; 2020 ' . get_bloginfo('name')); ?>
                 <span class="copyright"><?php echo $copyright_message; ?></span>
-                <?php if(!get_theme_mod('hide_theme_prop')){
+                <?php if(!$hide_theme_prop){
                 ?>
                 <span class="theme_author_prop">
 				<?php

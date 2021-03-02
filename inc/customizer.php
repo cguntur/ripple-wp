@@ -172,6 +172,7 @@ function ripple_wp_theme_options($wp_customize){
     $wp_customize->add_control( 'add_search_icon', array(
         'priority'  => 50,
         'label' => 'Add search option to the top bar',
+        'description' => '(Icon will display after the menu has been assigned)',
         'section' => 'header_options',
         'settings' => 'add_search_icon',
         'type' => 'radio',
@@ -478,7 +479,7 @@ function ripple_wp_theme_get_customizer_css() {
         color: <?php echo $text_color; ?>
     }
 
-    button, input[type="button"], input[type="reset"], input[type="submit"]{
+    button, input[type="button"], input[type="reset"], input[type="submit"], .button, a.button{
         background: <?php echo $accent_color; ?>
     }
 

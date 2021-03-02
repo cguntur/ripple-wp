@@ -57,7 +57,7 @@
     //Accent Color
     wp.customize( 'accent_color', function( value ) {
 		value.bind( function( to ) {
-				$( 'input[type="button"], input[type="reset"], input[type="submit"], .has-accent-color-background-color' ).css( {
+				$( 'input[type="button"], input[type="reset"], input[type="submit"], .has-accent-color-background-color, .button, a.button' ).css( {
 					background: to,
                 } );
                 $('.has-accent-color-color, a:hover, a:focus, a:active, a:visited, h1 a, h2 a, h3 a, h4 a, h5 a, h6 a, span a, p a').css({
